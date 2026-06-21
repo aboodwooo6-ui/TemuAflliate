@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Laqta | Daily Commission Deals from AliExpress</title>
+  <title>Laqta | Daily Commission Deals</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
   <style>
@@ -32,7 +32,7 @@
     #laqta-app * { box-sizing: border-box; }
     #laqta-app .wrap { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
 
-    /* header – AliExpress style */
+    /* header */
     #laqta-app header.site {
       background: #ffffff;
       color: var(--ink);
@@ -68,7 +68,7 @@
       background: var(--teal); border-color: var(--teal); color: #fff;
     }
 
-    /* ticker – AliExpress orange */
+    /* ticker */
     #laqta-app .ticker {
       background: #ff6a00; color: #fff; overflow: hidden;
       white-space: nowrap; font-weight: 500; font-size: 13px;
@@ -127,7 +127,7 @@
       background: var(--teal); border-color: var(--teal); color: #fff;
     }
 
-    /* product grid – clean cards */
+    /* product grid */
     #laqta-app main.shop { padding: 32px 0 70px; }
     #laqta-app .grid {
       display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
@@ -259,7 +259,6 @@
       border-radius:40px; font-weight:600; cursor:pointer; font-size:14px;
     }
     #laqta-app .btn-primary:hover { background: #e55d00; }
-    #laqta-app .btn-primary:disabled { opacity: .6; cursor: not-allowed; }
     #laqta-app .btn-ghost {
       background:transparent; border:1.5px solid var(--line); color:var(--ink-soft);
       padding:12px 18px; border-radius:40px; cursor:pointer; font-size:14px;
@@ -317,7 +316,6 @@
     footer.site .wrap { display: flex; flex-direction: column; gap: 4px; }
     footer.site strong { color: #fff; }
 
-    /* Hidden admin button at bottom */
     .hidden-admin-btn {
       bottom: 20px;
       right: 20px;
@@ -336,7 +334,6 @@
       backdrop-filter: blur(4px);
     }
 
-    /* Back to shop button in admin */
     .back-to-shop-btn {
       background: var(--teal);
       color: #fff;
@@ -362,7 +359,6 @@
       flex-wrap: wrap;
     }
 
-    /* Notification */
     .notification {
       position: fixed;
       bottom: 30px;
@@ -383,34 +379,25 @@
       transform: translateY(0);
     }
 
-    /* Sync status */
-    .sync-status {
+    /* Storage indicator */
+    .storage-info {
       font-size: 12px;
       color: var(--ink-soft);
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
+      margin-top: 8px;
+      padding: 8px 12px;
+      background: #f8fafb;
+      border-radius: 8px;
+      display: inline-block;
     }
-    .sync-status .dot {
-      width: 8px; height: 8px; border-radius: 50%;
-      background: #d4a12a;
-    }
-    .sync-status.ok .dot { background: #0e7c6f; }
-    .sync-status.err .dot { background: #c24a1f; }
-
+    .storage-info span { font-weight: 600; color: var(--teal-deep); }
   </style>
 </head>
 <body>
 <div id="laqta-app">
 
 <header class="site">
-
   <div class="ticker">
     <div class="ticker-track">
-      <span>🔥 Today's deals end soon</span>
-      <span>📦 Free tracked shipping</span>
-      <span>💸 Up to 60% off</span>
-      <span>⭐ Handpicked weekly</span>
       <span>🔥 Today's deals end soon</span>
       <span>📦 Free tracked shipping</span>
       <span>💸 Up to 60% off</span>
@@ -430,13 +417,13 @@
 <!-- SHOP VIEW -->
 <div id="view-shop">
   <section class="hero">
-      <div class="wrap site-row">
-    <div class="brand" onclick="window.__laqta.setView('shop')">
-      <span class="logo-icon" style="padding: 10px 10px; background: orange; font-size: 20px; margin-left: 20px;">
-        <span class="ali" style="color: white;">TE</span>MU<span style="color: red;">✦</span>
-      </span>
+    <div class="wrap site-row">
+      <div class="brand" onclick="window.__laqta.setView('shop')">
+        <span class="logo-icon" style="padding: 10px 10px; background: orange; font-size: 20px; margin-left: 20px;">
+          <span class="ali" style="color: white;">TE</span>MU<span style="color: red;">✦</span>
+        </span>
+      </div>
     </div>
-  </div>
     <div class="wrap">
       <h1>Daily deals... <em>before they fly</em></h1>
       <p class="lead">Curated products at discounted prices from TEMU. Updated regularly so you never miss a deal.</p>
@@ -471,19 +458,19 @@
         <button class="back-to-shop-btn" onclick="window.__laqta.setView('shop')">
           ← Back to Shop
         </button>
-        <span class="sync-status" id="sync-status"><span class="dot"></span><span id="sync-text">Connecting…</span></span>
+        <span style="color:var(--ink-soft);font-size:13px;">✅ Data is saved automatically</span>
       </div>
       <div class="panel-grid">
         <div class="form-card">
           <h2 id="form-title">Add Product</h2>
-          <div class="field"><label>Product title</label><input id="f-title" placeholder="e.g. Wireless Bluetooth Headphones"></div>
+          <div class="field"><label>Product title *</label><input id="f-title" placeholder="e.g. Wireless Bluetooth Headphones"></div>
           <div class="field"><label>Category</label><input id="f-category" placeholder="Electronics"></div>
           <div class="field-row">
-            <div class="field"><label>Current price ($)</label><input id="f-price" type="number" step="0.01" placeholder="19.99"></div>
+            <div class="field"><label>Current price ($) *</label><input id="f-price" type="number" step="0.01" placeholder="19.99"></div>
             <div class="field"><label>Old price ($)</label><input id="f-old-price" type="number" step="0.01" placeholder="39.99"></div>
           </div>
           <div class="field"><label>Rating (0-5)</label><input id="f-rating" type="number" min="0" max="5" step="0.1" placeholder="4.5"></div>
-          <div class="field"><label>Affiliate link</label><input id="f-link" placeholder="https://aliexpress.com/..."></div>
+          <div class="field"><label>Affiliate link *</label><input id="f-link" placeholder="https://aliexpress.com/..."></div>
           <div class="field"><label>Badge (optional)</label><input id="f-badge" placeholder="Best seller"></div>
 
           <div class="field">
@@ -498,10 +485,14 @@
           </div>
 
           <div class="form-actions">
-            <button class="btn-primary" id="save-btn" onclick="window.__laqta.saveProduct()">Save product</button>
+            <button class="btn-primary" onclick="window.__laqta.saveProduct()">Save product</button>
             <button class="btn-ghost" id="cancel-edit" style="display:none" onclick="window.__laqta.cancelEdit()">Cancel</button>
           </div>
           <div class="save-note" id="save-note"></div>
+          <div class="storage-info">
+            💾 All data (including images & videos) is saved to your browser's local storage.<br>
+            Total products: <span id="storage-count">0</span>
+          </div>
         </div>
 
         <div class="list-card">
@@ -519,46 +510,21 @@
 <footer class="site">
   <div class="wrap" style="margin-left: 20px;">
   </div>
-    <button class="hidden-admin-btn" style="margin-top: 20px;" onclick="window.__laqta.setView('admin')"> Admin</button>
+  <button class="hidden-admin-btn" style="margin-top: 20px;" onclick="window.__laqta.setView('admin')"> Admin</button>
 </footer>
 
 <!-- Notification -->
 <div id="notification" class="notification">✅ Product saved successfully!</div>
 
-<script type="module">
-  // ========== FIREBASE SETUP ==========
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-  import {
-    getFirestore, collection, doc, setDoc, addDoc, deleteDoc,
-    onSnapshot, getDocs
-  } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
-  import {
-    getStorage, ref, uploadBytes, getDownloadURL
-  } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-storage.js";
-
-  const firebaseConfig = {
-    apiKey: "AIzaSyCx520CJz3MfINDmH6EF1HaDYt-3Bg4jQQ",
-    authDomain: "temu-19ebe.firebaseapp.com",
-    projectId: "temu-19ebe",
-    storageBucket: "temu-19ebe.firebasestorage.app",
-    messagingSenderId: "345943293757",
-    appId: "1:345943293757:web:52e7407695e6d82a254f54",
-    measurementId: "G-7WWVTC557P"
-  };
-
-  const fbApp = initializeApp(firebaseConfig);
-  const db = getFirestore(fbApp);
-  const storage = getStorage(fbApp);
-  const productsCol = collection(db, "products");
-
+<script>
 (function(){
+  const STORAGE_KEY = 'laqta-products';
   const ADMIN_PASSCODE = 'admin123';
   let products = [];
   let activeCategory = 'All';
   let editingId = null;
   let unlocked = false;
   let pendingFiles = [];
-  let firstSnapshotReceived = false;
 
   const demoSeed = [
     {id:'1', title:'Wireless Bluetooth Headphones ANC', media: ['https://picsum.photos/seed/laqta1/600/600'], price:18.99, oldPrice:42.00, category:'Electronics', rating:4.6, link:'#', badge:'Best seller'},
@@ -569,43 +535,58 @@
     {id:'6', title:'Resistance Bands Set (5pcs)', media: ['https://picsum.photos/seed/laqta6/600/600'], price:11.99, oldPrice:23.99, category:'Sports', rating:4.7, link:'#', badge:''}
   ];
 
-  // ========== FIRESTORE SYNC ==========
-  function setSyncStatus(state, text){
-    const el = document.getElementById('sync-status');
-    const txt = document.getElementById('sync-text');
-    if(!el) return;
-    el.classList.remove('ok','err');
-    if(state) el.classList.add(state);
-    txt.textContent = text;
-  }
-
-  async function seedIfEmpty(){
+  // ========== LOCAL STORAGE FUNCTIONS ==========
+  function loadFromStorage(){
     try {
-      const snap = await getDocs(productsCol);
-      if(snap.empty){
-        for(const p of demoSeed){
-          const {id, ...rest} = p;
-          await setDoc(doc(productsCol, id), rest);
+      const saved = localStorage.getItem(STORAGE_KEY);
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        if (Array.isArray(parsed) && parsed.length > 0) {
+          return parsed;
         }
       }
-    } catch(e){
-      console.warn('Seed check failed:', e);
+      return null;
+    } catch(e) {
+      console.warn('Failed to load from localStorage:', e);
+      return null;
     }
   }
 
-  function listenProducts(){
-    onSnapshot(productsCol, (snapshot) => {
-      products = snapshot.docs.map(d => ({ id: d.id, ...d.data() }));
-      firstSnapshotReceived = true;
-      setSyncStatus('ok', 'Synced ✓');
-      renderChips();
-      render();
-      renderAdminList();
-    }, (err) => {
-      console.error('Firestore listen error:', err);
-      setSyncStatus('err', 'Connection error');
-      showNotification('⚠️ Could not connect to the database', true);
-    });
+  function saveToStorage(data){
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+      return true;
+    } catch(e) {
+      console.warn('Failed to save to localStorage:', e);
+      // Check if storage is full
+      if (e.name === 'QuotaExceededError' || e.code === 22) {
+        showNotification('⚠️ Storage is full! Try deleting some media or products.', true);
+      }
+      return false;
+    }
+  }
+
+  // ========== PRODUCT FUNCTIONS ==========
+  function loadProducts(){
+    const saved = loadFromStorage();
+    if (saved) {
+      products = saved;
+    } else {
+      products = JSON.parse(JSON.stringify(demoSeed));
+      saveToStorage(products);
+    }
+    renderChips();
+    render();
+    renderAdminList();
+    updateStorageCount();
+  }
+
+  function persist(){
+    const saved = saveToStorage(products);
+    if (saved) {
+      updateStorageCount();
+    }
+    return saved;
   }
 
   function showNotification(message, isError = false){
@@ -615,6 +596,10 @@
     el.classList.add('show');
     clearTimeout(el._timeout);
     el._timeout = setTimeout(() => el.classList.remove('show'), 3000);
+  }
+
+  function updateStorageCount(){
+    document.getElementById('storage-count').textContent = products.length;
   }
 
   function fmt(n){ return '$' + Number(n).toFixed(2); }
@@ -712,7 +697,7 @@
   }
 
   function filterCat(c){ activeCategory = c; renderChips(); render(); }
-
+  
   function setView(v){
     document.getElementById('view-shop').style.display = v === 'shop' ? 'block' : 'none';
     document.getElementById('view-admin').style.display = v === 'admin' ? 'block' : 'none';
@@ -722,11 +707,11 @@
       if(unlocked) renderAdminList();
     }
   }
-
+  
   function tryLogin(){
     const val = document.getElementById('pass-input').value;
     if(val === ADMIN_PASSCODE){
-      unlocked = true;
+      unlocked = true; 
       document.getElementById('gate-err').textContent = '';
       setView('admin');
     } else {
@@ -743,7 +728,7 @@
     document.getElementById('cancel-edit').style.display = 'none';
     document.getElementById('save-note').textContent = '';
   }
-
+  
   function cancelEdit(){ clearForm(); }
 
   function updateFileListUI(){
@@ -754,7 +739,7 @@
     }
     container.innerHTML = pendingFiles.map((f, i) => `
       <span class="file-chip">
-        ${f.type.startsWith('video') ? '🎬' : '🖼️'} ${f.name || `file ${i+1}`}
+        ${f.type.startsWith('video') ? '🎬' : '🖼️'} ${f.name || `file ${i+1}`} (${Math.round(f.size/1024)}KB)
         <span class="remove" onclick="window.__laqta.removeFile(${i})">✕</span>
       </span>
     `).join('');
@@ -771,8 +756,17 @@
     input.addEventListener('change', (e) => {
       const files = Array.from(e.target.files);
       files.forEach(f => {
-        pendingFiles.push(f);
-        updateFileListUI();
+        const reader = new FileReader();
+        reader.onload = (ev) => {
+          pendingFiles.push({ 
+            dataURL: ev.target.result, 
+            type: f.type, 
+            name: f.name,
+            size: f.size 
+          });
+          updateFileListUI();
+        };
+        reader.readAsDataURL(f);
       });
       input.value = '';
     });
@@ -783,18 +777,26 @@
       dropZone.style.borderColor = 'var(--line)';
       const files = Array.from(e.dataTransfer.files);
       files.forEach(f => {
-        pendingFiles.push(f);
-        updateFileListUI();
+        const reader = new FileReader();
+        reader.onload = (ev) => {
+          pendingFiles.push({ 
+            dataURL: ev.target.result, 
+            type: f.type, 
+            name: f.name,
+            size: f.size 
+          });
+          updateFileListUI();
+        };
+        reader.readAsDataURL(f);
       });
     });
   }
 
-  async function saveProduct(){
+  function saveProduct(){
     const title = document.getElementById('f-title').value.trim();
     const link = document.getElementById('f-link').value.trim();
     const price = parseFloat(document.getElementById('f-price').value);
     const note = document.getElementById('save-note');
-    const saveBtn = document.getElementById('save-btn');
 
     if(!title || !link || isNaN(price)){
       note.style.color = '#c24a1f';
@@ -804,57 +806,46 @@
     }
 
     let media = [];
-    saveBtn.disabled = true;
-    note.style.color = 'var(--ink-soft)';
+    if(pendingFiles.length > 0){
+      media = pendingFiles.map(f => f.dataURL);
+    } else if(editingId){
+      const existing = products.find(p => p.id === editingId);
+      if(existing && existing.media) media = existing.media.slice();
+    }
+    if(media.length === 0){
+      media = ['https://picsum.photos/seed/' + Date.now() + '/600/600'];
+    }
 
-    try {
-      if(pendingFiles.length > 0){
-        for(let i = 0; i < pendingFiles.length; i++){
-          const file = pendingFiles[i];
-          note.textContent = `Uploading ${i+1}/${pendingFiles.length}…`;
-          const path = `products/${Date.now()}-${i}-${file.name}`;
-          const fileRef = ref(storage, path);
-          await uploadBytes(fileRef, file);
-          const url = await getDownloadURL(fileRef);
-          media.push(url);
-        }
-      } else if(editingId){
-        const existing = products.find(p => p.id === editingId);
-        if(existing && existing.media) media = existing.media.slice();
-      }
-      if(media.length === 0){
-        media = ['https://picsum.photos/seed/' + Date.now() + '/600/600'];
-      }
+    const data = {
+      title,
+      category: document.getElementById('f-category').value.trim() || 'General',
+      price,
+      oldPrice: parseFloat(document.getElementById('f-old-price').value) || null,
+      rating: parseFloat(document.getElementById('f-rating').value) || 4.5,
+      link,
+      badge: document.getElementById('f-badge').value.trim(),
+      media
+    };
 
-      const data = {
-        title,
-        category: document.getElementById('f-category').value.trim() || 'General',
-        price,
-        oldPrice: parseFloat(document.getElementById('f-old-price').value) || null,
-        rating: parseFloat(document.getElementById('f-rating').value) || 4.5,
-        link,
-        badge: document.getElementById('f-badge').value.trim(),
-        media
-      };
+    if(editingId){
+      const idx = products.findIndex(p => p.id === editingId);
+      if(idx > -1) products[idx] = {...products[idx], ...data};
+    } else {
+      products.push({id: String(Date.now()), ...data});
+    }
 
-      note.textContent = 'Saving…';
-      if(editingId){
-        await setDoc(doc(productsCol, editingId), data);
-      } else {
-        await addDoc(productsCol, data);
-      }
+    const saved = persist();
+    if(saved) {
       clearForm();
+      renderChips();
+      render();
+      renderAdminList();
       note.style.color = '#0e7c6f';
-      note.textContent = 'Saved ✓';
-      showNotification('✅ Product saved successfully!');
+      note.textContent = '✅ Saved successfully!';
+      showNotification('✅ Product saved to storage!');
       setTimeout(()=> note.textContent = '', 2500);
-    } catch(e){
-      console.error('Save failed:', e);
-      note.style.color = '#c24a1f';
-      note.textContent = 'Save failed: ' + e.message;
-      showNotification('⚠️ Save failed — check Firebase Storage rules', true);
-    } finally {
-      saveBtn.disabled = false;
+    } else {
+      showNotification('⚠️ Failed to save! Storage may be full.', true);
     }
   }
 
@@ -876,15 +867,14 @@
     window.scrollTo({top: 0, behavior: 'smooth'});
   }
 
-  async function deleteProduct(id){
+  function deleteProduct(id){
     if(!confirm('Are you sure you want to delete this product?')) return;
-    try {
-      await deleteDoc(doc(productsCol, id));
-      showNotification('🗑️ Product deleted');
-    } catch(e){
-      console.error('Delete failed:', e);
-      showNotification('⚠️ Delete failed: ' + e.message, true);
-    }
+    products = products.filter(p => p.id !== id);
+    persist();
+    renderChips();
+    render();
+    renderAdminList();
+    showNotification('🗑️ Product deleted');
   }
 
   function renderAdminList(){
@@ -899,7 +889,7 @@
       const count = p.media ? p.media.length : 0;
       return `
         <div class="admin-row">
-          <img class="media-preview" src="${firstMedia}" alt="">
+          <img class="media-preview" src="${firstMedia}" alt="" loading="lazy">
           <div class="info">
             <div class="t">${escapeHtml(p.title)}</div>
             <div class="m">${escapeHtml(p.category||'')} · ${fmt(p.price)} · ${count} media</div>
@@ -919,8 +909,7 @@
   };
 
   setupFileUpload();
-  setSyncStatus(null, 'Connecting…');
-  seedIfEmpty().then(listenProducts);
+  loadProducts();
 })();
 </script>
 </div>
