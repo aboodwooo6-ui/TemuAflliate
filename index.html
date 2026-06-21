@@ -532,6 +532,9 @@
     getFirestore, collection, doc, setDoc, addDoc, deleteDoc,
     onSnapshot, getDocs
   } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+  import {
+    getStorage, ref, uploadBytes, getDownloadURL
+  } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-storage.js";
 
   const firebaseConfig = {
     apiKey: "AIzaSyCx520CJz3MfINDmH6EF1HaDYt-3Bg4jQQ",
@@ -545,6 +548,7 @@
 
   const fbApp = initializeApp(firebaseConfig);
   const db = getFirestore(fbApp);
+  const storage = getStorage(fbApp);
   const productsCol = collection(db, "products");
 
 (function(){
@@ -767,12 +771,8 @@
     input.addEventListener('change', (e) => {
       const files = Array.from(e.target.files);
       files.forEach(f => {
-        const reader = new FileReader();
-        reader.onload = (ev) => {
-          pendingFiles.push({ dataURL: ev.target.result, type: f.type, name: f.name });
-          updateFileListUI();
-        };
-        reader.readAsDataURL(f);
+        pendingFiles.push(f);
+        updateFileListUI();
       });
       input.value = '';
     });
@@ -783,12 +783,8 @@
       dropZone.style.borderColor = 'var(--line)';
       const files = Array.from(e.dataTransfer.files);
       files.forEach(f => {
-        const reader = new FileReader();
-        reader.onload = (ev) => {
-          pendingFiles.push({ dataURL: ev.target.result, type: f.type, name: f.name });
-          updateFileListUI();
-        };
-        reader.readAsDataURL(f);
+        pendingFiles.push(f);
+        updateFileListUI();
       });
     });
   }
@@ -808,32 +804,40 @@
     }
 
     let media = [];
-    if(pendingFiles.length > 0){
-      media = pendingFiles.map(f => f.dataURL);
-    } else if(editingId){
-      const existing = products.find(p => p.id === editingId);
-      if(existing && existing.media) media = existing.media.slice();
-    }
-    if(media.length === 0){
-      media = ['https://picsum.photos/seed/' + Date.now() + '/600/600'];
-    }
-
-    const data = {
-      title,
-      category: document.getElementById('f-category').value.trim() || 'General',
-      price,
-      oldPrice: parseFloat(document.getElementById('f-old-price').value) || null,
-      rating: parseFloat(document.getElementById('f-rating').value) || 4.5,
-      link,
-      badge: document.getElementById('f-badge').value.trim(),
-      media
-    };
-
     saveBtn.disabled = true;
     note.style.color = 'var(--ink-soft)';
-    note.textContent = 'Saving…';
 
     try {
+      if(pendingFiles.length > 0){
+        for(let i = 0; i < pendingFiles.length; i++){
+          const file = pendingFiles[i];
+          note.textContent = `Uploading ${i+1}/${pendingFiles.length}…`;
+          const path = `products/${Date.now()}-${i}-${file.name}`;
+          const fileRef = ref(storage, path);
+          await uploadBytes(fileRef, file);
+          const url = await getDownloadURL(fileRef);
+          media.push(url);
+        }
+      } else if(editingId){
+        const existing = products.find(p => p.id === editingId);
+        if(existing && existing.media) media = existing.media.slice();
+      }
+      if(media.length === 0){
+        media = ['https://picsum.photos/seed/' + Date.now() + '/600/600'];
+      }
+
+      const data = {
+        title,
+        category: document.getElementById('f-category').value.trim() || 'General',
+        price,
+        oldPrice: parseFloat(document.getElementById('f-old-price').value) || null,
+        rating: parseFloat(document.getElementById('f-rating').value) || 4.5,
+        link,
+        badge: document.getElementById('f-badge').value.trim(),
+        media
+      };
+
+      note.textContent = 'Saving…';
       if(editingId){
         await setDoc(doc(productsCol, editingId), data);
       } else {
@@ -848,7 +852,7 @@
       console.error('Save failed:', e);
       note.style.color = '#c24a1f';
       note.textContent = 'Save failed: ' + e.message;
-      showNotification('⚠️ Save failed — check your Firestore rules', true);
+      showNotification('⚠️ Save failed — check Firebase Storage rules', true);
     } finally {
       saveBtn.disabled = false;
     }
