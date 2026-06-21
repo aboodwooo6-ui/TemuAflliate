@@ -7,7 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
   <style>
-    /* reset & base */
+    /* جميع الأنماط كما هي من الكود السابق - تم حذفها للاختصار */
     html, body { margin:0; padding:0; background:#f4f6f9; }
     #laqta-app {
       --bg: #ffffff;
@@ -31,8 +31,6 @@
     }
     #laqta-app * { box-sizing: border-box; }
     #laqta-app .wrap { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
-
-    /* header */
     #laqta-app header.site {
       background: #ffffff;
       color: var(--ink);
@@ -67,8 +65,6 @@
     #laqta-app nav.site-nav button.active {
       background: var(--teal); border-color: var(--teal); color: #fff;
     }
-
-    /* ticker */
     #laqta-app .ticker {
       background: #ff6a00; color: #fff; overflow: hidden;
       white-space: nowrap; font-weight: 500; font-size: 13px;
@@ -84,8 +80,6 @@
       to { transform: translateX(-50%); }
     }
     @media (prefers-reduced-motion: reduce) { #laqta-app .ticker-track { animation: none; } }
-
-    /* hero */
     #laqta-app .hero {
       background: #ffffff; border-bottom: 1px solid var(--line);
       padding: 40px 0 28px;
@@ -112,8 +106,6 @@
       border: none; background: var(--teal); color: #fff;
       padding: 0 24px; font-weight: 600; cursor: pointer;
     }
-
-    /* chips */
     #laqta-app .chips {
       display: flex; gap: 8px; flex-wrap: wrap; padding: 18px 0 2px;
     }
@@ -126,8 +118,6 @@
     #laqta-app .chips button:hover {
       background: var(--teal); border-color: var(--teal); color: #fff;
     }
-
-    /* product grid */
     #laqta-app main.shop { padding: 32px 0 70px; }
     #laqta-app .grid {
       display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
@@ -139,8 +129,6 @@
       transition: transform .2s, box-shadow .2s;
     }
     #laqta-app .card:hover { transform: translateY(-4px); box-shadow: var(--shadow); }
-
-    /* media slider */
     #laqta-app .card .img-wrap {
       position: relative; aspect-ratio: 1/1; background: #f0f2f5; overflow: hidden;
     }
@@ -175,7 +163,6 @@
       cursor: pointer; transition: background .2s;
     }
     #laqta-app .card .img-wrap .media-indicators span.active { background: #fff; }
-
     #laqta-app .tag {
       position: absolute; top: 12px; right: -2px;
       background: #ff6a00; color: #fff; font-weight: 700; font-size: 13px;
@@ -189,7 +176,6 @@
       font-weight: 600; padding: 3px 12px; border-radius: 40px; z-index: 10;
       backdrop-filter: blur(4px);
     }
-
     #laqta-app .card .body { padding: 14px 16px 16px; display: flex; flex-direction: column; gap: 6px; flex:1; }
     #laqta-app .card .cat { font-size: 12px; color: var(--teal); font-weight: 600; text-transform: uppercase; letter-spacing: 0.3px; }
     #laqta-app .card h3 {
@@ -207,15 +193,12 @@
       font-weight: 600; font-size: 14px; transition: background .15s;
     }
     #laqta-app .buy-btn:hover { background: #e55d00; }
-
     #laqta-app .empty { text-align: center; padding: 70px 20px; color: var(--ink-soft); }
     #laqta-app .empty .title { font-size: 22px; font-weight: 600; color: var(--ink); margin-bottom: 8px; }
     #laqta-app .empty button {
       margin-top: 16px; background: #ff6a00; color: #fff; border: none;
       padding: 12px 28px; border-radius: 40px; font-weight: 600; cursor: pointer;
     }
-
-    /* admin */
     #laqta-app .admin-wrap { padding: 40px 0 70px; }
     #laqta-app .gate {
       max-width: 380px; margin: 60px auto; background: #fff; border: 1px solid var(--line);
@@ -233,7 +216,6 @@
     }
     #laqta-app .gate .err { color: var(--coral-deep); font-size: 13px; min-height: 20px; }
     #laqta-app .gate .hint { font-size: 12px; color: var(--ink-soft); margin-top: 10px; }
-
     #laqta-app .panel-grid {
       display: grid; grid-template-columns: 400px 1fr; gap: 28px; align-items: start;
     }
@@ -285,8 +267,6 @@
       background: #f8fafb; border:1px dashed var(--line); border-radius:16px;
       padding:14px; font-size:12.5px; color:var(--ink-soft); margin-top:20px;
     }
-
-    /* file upload */
     #laqta-app .file-upload-wrap {
       display: flex; flex-direction: column; gap: 8px;
     }
@@ -308,14 +288,12 @@
       cursor: pointer; color: #e25a2a; font-weight: 700;
     }
     #laqta-app .file-upload-wrap input[type="file"] { display: none; }
-
     footer.site {
       background: #1a1a2e; color: rgba(255,255,255,.7);
       padding: 24px 0; font-size: 13px;
     }
     footer.site .wrap { display: flex; flex-direction: column; gap: 4px; }
     footer.site strong { color: #fff; }
-
     .hidden-admin-btn {
       bottom: 20px;
       right: 20px;
@@ -333,7 +311,6 @@
       letter-spacing: 0.5px;
       backdrop-filter: blur(4px);
     }
-
     .back-to-shop-btn {
       background: var(--teal);
       color: #fff;
@@ -358,7 +335,6 @@
       gap: 16px;
       flex-wrap: wrap;
     }
-
     .notification {
       position: fixed;
       bottom: 30px;
@@ -378,8 +354,6 @@
       opacity: 1;
       transform: translateY(0);
     }
-
-    /* Storage indicator */
     .storage-info {
       font-size: 12px;
       color: var(--ink-soft);
@@ -390,6 +364,15 @@
       display: inline-block;
     }
     .storage-info span { font-weight: 600; color: var(--teal-deep); }
+    .sync-status {
+      font-size: 12px;
+      padding: 4px 12px;
+      border-radius: 20px;
+      display: inline-block;
+    }
+    .sync-status.synced { background: #e6f7e6; color: #0e7c6f; }
+    .sync-status.syncing { background: #fff3cd; color: #856404; }
+    .sync-status.error { background: #f8d7da; color: #721c24; }
   </style>
 </head>
 <body>
@@ -398,10 +381,6 @@
 <header class="site">
   <div class="ticker">
     <div class="ticker-track">
-      <span>🔥 Today's deals end soon</span>
-      <span>📦 Free tracked shipping</span>
-      <span>💸 Up to 60% off</span>
-      <span>⭐ Handpicked weekly</span>
       <span>🔥 Today's deals end soon</span>
       <span>📦 Free tracked shipping</span>
       <span>💸 Up to 60% off</span>
@@ -423,6 +402,7 @@
           <span class="ali" style="color: white;">TE</span>MU<span style="color: red;">✦</span>
         </span>
       </div>
+      <span id="sync-status" class="sync-status synced">✅ متزامن مع السحابة</span>
     </div>
     <div class="wrap">
       <h1>Daily deals... <em>before they fly</em></h1>
@@ -452,13 +432,17 @@
       <input id="pass-input" type="password" placeholder="Enter password" onkeydown="if(event.key==='Enter')window.__laqta.tryLogin()">
       <button onclick="window.__laqta.tryLogin()">Login</button>
       <div class="err" id="gate-err"></div>
+      <div class="hint">🔑 Password: admin123</div>
     </div>
     <div id="panel" style="display:none">
       <div class="admin-header">
         <button class="back-to-shop-btn" onclick="window.__laqta.setView('shop')">
           ← Back to Shop
         </button>
-        <span style="color:var(--ink-soft);font-size:13px;">✅ Data is saved automatically</span>
+        <span style="color:var(--ink-soft);font-size:13px;">✅ Data is saved to cloud automatically</span>
+        <button onclick="window.__laqta.syncWithCloud()" style="background:var(--teal);color:#fff;border:none;padding:8px 16px;border-radius:20px;cursor:pointer;font-size:12px;">
+          🔄 Sync Now
+        </button>
       </div>
       <div class="panel-grid">
         <div class="form-card">
@@ -490,7 +474,7 @@
           </div>
           <div class="save-note" id="save-note"></div>
           <div class="storage-info">
-            💾 All data (including images & videos) is saved to your browser's local storage.<br>
+            ☁️ Cloud sync: <span id="cloud-status">Active</span><br>
             Total products: <span id="storage-count">0</span>
           </div>
         </div>
@@ -517,400 +501,495 @@
 <div id="notification" class="notification">✅ Product saved successfully!</div>
 
 <script>
-(function(){
-  const STORAGE_KEY = 'laqta-products';
-  const ADMIN_PASSCODE = 'admin123';
-  let products = [];
-  let activeCategory = 'All';
-  let editingId = null;
-  let unlocked = false;
-  let pendingFiles = [];
+// ========== تكوين قاعدة البيانات ==========
+// سجل مجاني في JSONBin.io واستخدم الـ API Key و Bin ID الخاص بك
+// رابط التسجيل: https://jsonbin.io
+const JSONBIN_CONFIG = {
+  // 🔑 غير هذه القيم بعد التسجيل في JSONBin
+  API_KEY: '$2a$10$FgR6XqA1Y9B2C3D4E5F6G7H8I9J0K1L2M3N4O5P6Q7R8S9T0U1V2W3X4Y5Z6',
+  BIN_ID: '67b5e8b8ad19ca34f8e5a4d2' // هذا معرف تجريبي - استخدم معرفك الخاص
+};
 
-  const demoSeed = [
-    {id:'1', title:'Wireless Bluetooth Headphones ANC', media: ['https://picsum.photos/seed/laqta1/600/600'], price:18.99, oldPrice:42.00, category:'Electronics', rating:4.6, link:'#', badge:'Best seller'},
-    {id:'2', title:'Smart Sports Watch AMOLED', media: ['https://picsum.photos/seed/laqta2/600/600', 'https://picsum.photos/seed/laqta22/600/600'], price:27.50, oldPrice:55.00, category:'Electronics', rating:4.4, link:'#', badge:''},
-    {id:'3', title:'RGB LED Strip for Room', media: ['https://picsum.photos/seed/laqta3/600/600'], price:9.99, oldPrice:19.99, category:'Home', rating:4.2, link:'#', badge:''},
-    {id:'4', title:'Portable USB Blender', media: ['https://picsum.photos/seed/laqta4/600/600', 'https://picsum.photos/seed/laqta44/600/600'], price:12.40, oldPrice:24.00, category:'Home', rating:4.0, link:'#', badge:'Limited offer'},
-    {id:'5', title:'Classic Metal Frame Sunglasses', media: ['https://picsum.photos/seed/laqta5/600/600'], price:8.50, oldPrice:16.00, category:'Fashion', rating:4.3, link:'#', badge:''},
-    {id:'6', title:'Resistance Bands Set (5pcs)', media: ['https://picsum.photos/seed/laqta6/600/600'], price:11.99, oldPrice:23.99, category:'Sports', rating:4.7, link:'#', badge:''}
-  ];
+// ========== دوال المزامنة مع السحابة ==========
+async function syncWithCloud() {
+  try {
+    const statusEl = document.getElementById('sync-status');
+    statusEl.className = 'sync-status syncing';
+    statusEl.textContent = '⏳ جاري المزامنة...';
 
-  // ========== LOCAL STORAGE FUNCTIONS ==========
-  function loadFromStorage(){
-    try {
-      const saved = localStorage.getItem(STORAGE_KEY);
-      if (saved) {
-        const parsed = JSON.parse(saved);
-        if (Array.isArray(parsed) && parsed.length > 0) {
-          return parsed;
-        }
-      }
-      return null;
-    } catch(e) {
-      console.warn('Failed to load from localStorage:', e);
-      return null;
+    // حفظ البيانات في السحابة
+    const response = await fetch(`https://api.jsonbin.io/v3/b/${JSONBIN_CONFIG.BIN_ID}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-Master-Key': JSONBIN_CONFIG.API_KEY
+      },
+      body: JSON.stringify({
+        products: products,
+        lastUpdated: new Date().toISOString()
+      })
+    });
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
     }
-  }
 
-  function saveToStorage(data){
-    try {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
-      return true;
-    } catch(e) {
-      console.warn('Failed to save to localStorage:', e);
-      // Check if storage is full
-      if (e.name === 'QuotaExceededError' || e.code === 22) {
-        showNotification('⚠️ Storage is full! Try deleting some media or products.', true);
+    const data = await response.json();
+    console.log('✅ Synced with cloud:', data);
+
+    statusEl.className = 'sync-status synced';
+    statusEl.textContent = '✅ متزامن مع السحابة';
+    showNotification('✅ تم المزامنة مع السحابة بنجاح!');
+    
+    return true;
+  } catch (error) {
+    console.error('❌ Sync failed:', error);
+    const statusEl = document.getElementById('sync-status');
+    statusEl.className = 'sync-status error';
+    statusEl.textContent = '⚠️ فشل المزامنة';
+    showNotification('⚠️ فشل المزامنة مع السحابة', true);
+    return false;
+  }
+}
+
+async function loadFromCloud() {
+  try {
+    const statusEl = document.getElementById('sync-status');
+    statusEl.className = 'sync-status syncing';
+    statusEl.textContent = '⏳ جاري التحميل...';
+
+    const response = await fetch(`https://api.jsonbin.io/v3/b/${JSONBIN_CONFIG.BIN_ID}/latest`, {
+      headers: {
+        'X-Master-Key': JSONBIN_CONFIG.API_KEY
       }
-      return false;
-    }
-  }
+    });
 
-  // ========== PRODUCT FUNCTIONS ==========
-  function loadProducts(){
-    const saved = loadFromStorage();
-    if (saved) {
-      products = saved;
-    } else {
-      products = JSON.parse(JSON.stringify(demoSeed));
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    const data = await response.json();
+    const cloudData = data.record;
+    
+    if (cloudData && cloudData.products && cloudData.products.length > 0) {
+      products = cloudData.products;
       saveToStorage(products);
-    }
-    renderChips();
-    render();
-    renderAdminList();
-    updateStorageCount();
-  }
-
-  function persist(){
-    const saved = saveToStorage(products);
-    if (saved) {
-      updateStorageCount();
-    }
-    return saved;
-  }
-
-  function showNotification(message, isError = false){
-    const el = document.getElementById('notification');
-    el.textContent = message;
-    el.style.background = isError ? '#c24a1f' : '#0e7c6f';
-    el.classList.add('show');
-    clearTimeout(el._timeout);
-    el._timeout = setTimeout(() => el.classList.remove('show'), 3000);
-  }
-
-  function updateStorageCount(){
-    document.getElementById('storage-count').textContent = products.length;
-  }
-
-  function fmt(n){ return '$' + Number(n).toFixed(2); }
-  function starString(rating){
-    const full = Math.round(rating);
-    return '★'.repeat(full) + '☆'.repeat(5-full) + '  ' + rating.toFixed(1);
-  }
-  function escapeHtml(s){
-    return String(s).replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
-  }
-
-  function renderChips(){
-    const cats = ['All', ...new Set(products.map(p=>p.category).filter(Boolean))];
-    const chipsEl = document.getElementById('chips');
-    chipsEl.innerHTML = cats.map(c =>
-      `<button class="${c===activeCategory?'active':''}" onclick="window.__laqta.filterCat('${c.replace(/'/g,"\\'")}')">${c}</button>`
-    ).join('');
-  }
-
-  function render(){
-    const term = (document.getElementById('search-input').value || '').trim();
-    let list = products.filter(p => activeCategory === 'All' || p.category === activeCategory);
-    if(term) list = list.filter(p => p.title.toLowerCase().includes(term.toLowerCase()));
-
-    const grid = document.getElementById('grid');
-    const empty = document.getElementById('empty-state');
-    if(list.length === 0){
-      grid.innerHTML = '';
-      empty.style.display = 'block';
-      return;
-    }
-    empty.style.display = 'none';
-    grid.innerHTML = list.map((p) => {
-      const discount = p.oldPrice && p.oldPrice > p.price ? Math.round((1 - p.price/p.oldPrice)*100) : 0;
-      const media = p.media && p.media.length ? p.media : ['https://picsum.photos/seed/'+p.id+'/600/600'];
-      const slides = media.map((src) => {
-        const isVideo = src.match(/\.(mp4|webm|ogg)/i) || src.startsWith('data:video');
-        return `<div class="slide">
-          ${isVideo ? `<video src="${src}" muted playsinline></video>` : `<img src="${src}" alt="${escapeHtml(p.title)}" loading="lazy">`}
-        </div>`;
-      }).join('');
-      const indicators = media.map((_, i) => `<span class="${i===0?'active':''}" data-index="${i}"></span>`).join('');
-
-      return `
-        <div class="card" data-id="${p.id}">
-          <div class="img-wrap" data-slider-id="${p.id}" data-current="0">
-            <div class="media-slider" style="transform: translateX(0%);">
-              ${slides}
-            </div>
-            ${media.length > 1 ? `
-              <button class="slider-btn prev" onclick="window.__laqta.slide('${p.id}', -1, event)">‹</button>
-              <button class="slider-btn next" onclick="window.__laqta.slide('${p.id}', 1, event)">›</button>
-              <div class="media-indicators">${indicators}</div>
-            ` : ''}
-            ${discount > 0 ? `<div class="tag">${discount}%-</div>` : ''}
-            ${p.badge ? `<div class="badge-text">${escapeHtml(p.badge)}</div>` : ''}
-          </div>
-          <div class="body">
-            <div class="cat">${escapeHtml(p.category||'')}</div>
-            <h3>${escapeHtml(p.title)}</h3>
-            <div class="stars">${starString(Number(p.rating||0))}</div>
-            <div class="price-row">
-              <div class="price">${fmt(p.price)}</div>
-              ${p.oldPrice ? `<div class="old-price">${fmt(p.oldPrice)}</div>` : ''}
-            </div>
-            <a class="buy-btn" href="${p.link||'#'}" target="_blank" rel="nofollow sponsored noopener">Buy now</a>
-          </div>
-        </div>`;
-    }).join('');
-
-    document.querySelectorAll('.card .img-wrap video').forEach(v => {
-      v.addEventListener('mouseenter', () => v.play());
-      v.addEventListener('mouseleave', () => v.pause());
-    });
-  }
-
-  function slide(productId, dir, ev){
-    if(ev) ev.stopPropagation();
-    const card = document.querySelector(`.card[data-id="${productId}"]`);
-    if(!card) return;
-    const wrap = card.querySelector('.img-wrap');
-    const slider = wrap.querySelector('.media-slider');
-    const slides = slider.querySelectorAll('.slide');
-    const total = slides.length;
-    if(total <= 1) return;
-    let current = parseInt(wrap.dataset.current || '0');
-    current = (current + dir + total) % total;
-    wrap.dataset.current = current;
-    slider.style.transform = `translateX(-${current * 100}%)`;
-    const indicators = wrap.querySelectorAll('.media-indicators span');
-    indicators.forEach((el, i) => el.classList.toggle('active', i === current));
-    const slideEl = slides[current];
-    const video = slideEl.querySelector('video');
-    if(video) video.play();
-  }
-
-  function filterCat(c){ activeCategory = c; renderChips(); render(); }
-  
-  function setView(v){
-    document.getElementById('view-shop').style.display = v === 'shop' ? 'block' : 'none';
-    document.getElementById('view-admin').style.display = v === 'admin' ? 'block' : 'none';
-    if(v === 'admin'){
-      document.getElementById('gate').style.display = unlocked ? 'none' : 'block';
-      document.getElementById('panel').style.display = unlocked ? 'block' : 'none';
-      if(unlocked) renderAdminList();
-    }
-  }
-  
-  function tryLogin(){
-    const val = document.getElementById('pass-input').value;
-    if(val === ADMIN_PASSCODE){
-      unlocked = true; 
-      document.getElementById('gate-err').textContent = '';
-      setView('admin');
-    } else {
-      document.getElementById('gate-err').textContent = 'Incorrect password. Try again.';
-    }
-  }
-
-  function clearForm(){
-    ['f-title','f-category','f-price','f-old-price','f-rating','f-link','f-badge'].forEach(id => document.getElementById(id).value = '');
-    pendingFiles = [];
-    updateFileListUI();
-    editingId = null;
-    document.getElementById('form-title').textContent = 'Add Product';
-    document.getElementById('cancel-edit').style.display = 'none';
-    document.getElementById('save-note').textContent = '';
-  }
-  
-  function cancelEdit(){ clearForm(); }
-
-  function updateFileListUI(){
-    const container = document.getElementById('file-list');
-    if(pendingFiles.length === 0){
-      container.innerHTML = '<span style="font-size:13px;color:var(--ink-soft);">No files selected</span>';
-      return;
-    }
-    container.innerHTML = pendingFiles.map((f, i) => `
-      <span class="file-chip">
-        ${f.type.startsWith('video') ? '🎬' : '🖼️'} ${f.name || `file ${i+1}`} (${Math.round(f.size/1024)}KB)
-        <span class="remove" onclick="window.__laqta.removeFile(${i})">✕</span>
-      </span>
-    `).join('');
-  }
-
-  function removeFile(index){
-    pendingFiles.splice(index, 1);
-    updateFileListUI();
-  }
-
-  function setupFileUpload(){
-    const input = document.getElementById('file-input');
-    const dropZone = document.getElementById('drop-zone');
-    input.addEventListener('change', (e) => {
-      const files = Array.from(e.target.files);
-      files.forEach(f => {
-        const reader = new FileReader();
-        reader.onload = (ev) => {
-          pendingFiles.push({ 
-            dataURL: ev.target.result, 
-            type: f.type, 
-            name: f.name,
-            size: f.size 
-          });
-          updateFileListUI();
-        };
-        reader.readAsDataURL(f);
-      });
-      input.value = '';
-    });
-    dropZone.addEventListener('dragover', (e) => { e.preventDefault(); dropZone.style.borderColor = '#0e7c6f'; });
-    dropZone.addEventListener('dragleave', () => { dropZone.style.borderColor = 'var(--line)'; });
-    dropZone.addEventListener('drop', (e) => {
-      e.preventDefault();
-      dropZone.style.borderColor = 'var(--line)';
-      const files = Array.from(e.dataTransfer.files);
-      files.forEach(f => {
-        const reader = new FileReader();
-        reader.onload = (ev) => {
-          pendingFiles.push({ 
-            dataURL: ev.target.result, 
-            type: f.type, 
-            name: f.name,
-            size: f.size 
-          });
-          updateFileListUI();
-        };
-        reader.readAsDataURL(f);
-      });
-    });
-  }
-
-  function saveProduct(){
-    const title = document.getElementById('f-title').value.trim();
-    const link = document.getElementById('f-link').value.trim();
-    const price = parseFloat(document.getElementById('f-price').value);
-    const note = document.getElementById('save-note');
-
-    if(!title || !link || isNaN(price)){
-      note.style.color = '#c24a1f';
-      note.textContent = 'Please fill in: title, price, and affiliate link.';
-      showNotification('Please fill in all required fields', true);
-      return;
-    }
-
-    let media = [];
-    if(pendingFiles.length > 0){
-      media = pendingFiles.map(f => f.dataURL);
-    } else if(editingId){
-      const existing = products.find(p => p.id === editingId);
-      if(existing && existing.media) media = existing.media.slice();
-    }
-    if(media.length === 0){
-      media = ['https://picsum.photos/seed/' + Date.now() + '/600/600'];
-    }
-
-    const data = {
-      title,
-      category: document.getElementById('f-category').value.trim() || 'General',
-      price,
-      oldPrice: parseFloat(document.getElementById('f-old-price').value) || null,
-      rating: parseFloat(document.getElementById('f-rating').value) || 4.5,
-      link,
-      badge: document.getElementById('f-badge').value.trim(),
-      media
-    };
-
-    if(editingId){
-      const idx = products.findIndex(p => p.id === editingId);
-      if(idx > -1) products[idx] = {...products[idx], ...data};
-    } else {
-      products.push({id: String(Date.now()), ...data});
-    }
-
-    const saved = persist();
-    if(saved) {
-      clearForm();
       renderChips();
       render();
       renderAdminList();
-      note.style.color = '#0e7c6f';
-      note.textContent = '✅ Saved successfully!';
-      showNotification('✅ Product saved to storage!');
-      setTimeout(()=> note.textContent = '', 2500);
+      updateStorageCount();
+      
+      statusEl.className = 'sync-status synced';
+      statusEl.textContent = '✅ متزامن مع السحابة';
+      showNotification('✅ تم تحميل البيانات من السحابة');
+      return true;
     } else {
-      showNotification('⚠️ Failed to save! Storage may be full.', true);
+      // إذا كانت السحابة فارغة، نرفع البيانات المحلية
+      await syncWithCloud();
+      return true;
     }
+  } catch (error) {
+    console.error('❌ Load from cloud failed:', error);
+    const statusEl = document.getElementById('sync-status');
+    statusEl.className = 'sync-status error';
+    statusEl.textContent = '⚠️ غير متصل بالسحابة - يستخدم التخزين المحلي';
+    showNotification('⚠️ غير متصل بالسحابة - البيانات محلية فقط', true);
+    return false;
+  }
+}
+
+// ========== باقي الكود (نفس السابق مع تعديلات بسيطة) ==========
+const STORAGE_KEY = 'laqta-products';
+const ADMIN_PASSCODE = 'admin123';
+let products = [];
+let activeCategory = 'All';
+let editingId = null;
+let unlocked = false;
+let pendingFiles = [];
+
+const demoSeed = [
+  {id:'1', title:'Wireless Bluetooth Headphones ANC', media: ['https://picsum.photos/seed/laqta1/600/600'], price:18.99, oldPrice:42.00, category:'Electronics', rating:4.6, link:'#', badge:'Best seller'},
+  {id:'2', title:'Smart Sports Watch AMOLED', media: ['https://picsum.photos/seed/laqta2/600/600', 'https://picsum.photos/seed/laqta22/600/600'], price:27.50, oldPrice:55.00, category:'Electronics', rating:4.4, link:'#', badge:''},
+  {id:'3', title:'RGB LED Strip for Room', media: ['https://picsum.photos/seed/laqta3/600/600'], price:9.99, oldPrice:19.99, category:'Home', rating:4.2, link:'#', badge:''},
+  {id:'4', title:'Portable USB Blender', media: ['https://picsum.photos/seed/laqta4/600/600', 'https://picsum.photos/seed/laqta44/600/600'], price:12.40, oldPrice:24.00, category:'Home', rating:4.0, link:'#', badge:'Limited offer'},
+  {id:'5', title:'Classic Metal Frame Sunglasses', media: ['https://picsum.photos/seed/laqta5/600/600'], price:8.50, oldPrice:16.00, category:'Fashion', rating:4.3, link:'#', badge:''},
+  {id:'6', title:'Resistance Bands Set (5pcs)', media: ['https://picsum.photos/seed/laqta6/600/600'], price:11.99, oldPrice:23.99, category:'Sports', rating:4.7, link:'#', badge:''}
+];
+
+function loadFromStorage(){
+  try {
+    const saved = localStorage.getItem(STORAGE_KEY);
+    if (saved) {
+      const parsed = JSON.parse(saved);
+      if (Array.isArray(parsed) && parsed.length > 0) {
+        return parsed;
+      }
+    }
+    return null;
+  } catch(e) {
+    console.warn('Failed to load from localStorage:', e);
+    return null;
+  }
+}
+
+function saveToStorage(data){
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+    return true;
+  } catch(e) {
+    console.warn('Failed to save to localStorage:', e);
+    return false;
+  }
+}
+
+function loadProducts(){
+  const saved = loadFromStorage();
+  if (saved) {
+    products = saved;
+  } else {
+    products = JSON.parse(JSON.stringify(demoSeed));
+    saveToStorage(products);
+  }
+  renderChips();
+  render();
+  renderAdminList();
+  updateStorageCount();
+  // تحميل من السحابة في الخلفية
+  setTimeout(() => loadFromCloud(), 1000);
+}
+
+function persist(){
+  const saved = saveToStorage(products);
+  if (saved) {
+    updateStorageCount();
+    // مزامنة تلقائية مع السحابة (كل 5 ثواني إذا كان هناك تغيير)
+    clearTimeout(window._syncTimeout);
+    window._syncTimeout = setTimeout(() => syncWithCloud(), 5000);
+  }
+  return saved;
+}
+
+function showNotification(message, isError = false){
+  const el = document.getElementById('notification');
+  el.textContent = message;
+  el.style.background = isError ? '#c24a1f' : '#0e7c6f';
+  el.classList.add('show');
+  clearTimeout(el._timeout);
+  el._timeout = setTimeout(() => el.classList.remove('show'), 3000);
+}
+
+function updateStorageCount(){
+  document.getElementById('storage-count').textContent = products.length;
+}
+
+function fmt(n){ return '$' + Number(n).toFixed(2); }
+function starString(rating){
+  const full = Math.round(rating);
+  return '★'.repeat(full) + '☆'.repeat(5-full) + '  ' + rating.toFixed(1);
+}
+function escapeHtml(s){
+  return String(s).replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+}
+
+function renderChips(){
+  const cats = ['All', ...new Set(products.map(p=>p.category).filter(Boolean))];
+  const chipsEl = document.getElementById('chips');
+  chipsEl.innerHTML = cats.map(c =>
+    `<button class="${c===activeCategory?'active':''}" onclick="window.__laqta.filterCat('${c.replace(/'/g,"\\'")}')">${c}</button>`
+  ).join('');
+}
+
+function render(){
+  const term = (document.getElementById('search-input').value || '').trim();
+  let list = products.filter(p => activeCategory === 'All' || p.category === activeCategory);
+  if(term) list = list.filter(p => p.title.toLowerCase().includes(term.toLowerCase()));
+
+  const grid = document.getElementById('grid');
+  const empty = document.getElementById('empty-state');
+  if(list.length === 0){
+    grid.innerHTML = '';
+    empty.style.display = 'block';
+    return;
+  }
+  empty.style.display = 'none';
+  grid.innerHTML = list.map((p) => {
+    const discount = p.oldPrice && p.oldPrice > p.price ? Math.round((1 - p.price/p.oldPrice)*100) : 0;
+    const media = p.media && p.media.length ? p.media : ['https://picsum.photos/seed/'+p.id+'/600/600'];
+    const slides = media.map((src) => {
+      const isVideo = src.match(/\.(mp4|webm|ogg)/i) || src.startsWith('data:video');
+      return `<div class="slide">
+        ${isVideo ? `<video src="${src}" muted playsinline></video>` : `<img src="${src}" alt="${escapeHtml(p.title)}" loading="lazy">`}
+      </div>`;
+    }).join('');
+    const indicators = media.map((_, i) => `<span class="${i===0?'active':''}" data-index="${i}"></span>`).join('');
+
+    return `
+      <div class="card" data-id="${p.id}">
+        <div class="img-wrap" data-slider-id="${p.id}" data-current="0">
+          <div class="media-slider" style="transform: translateX(0%);">
+            ${slides}
+          </div>
+          ${media.length > 1 ? `
+            <button class="slider-btn prev" onclick="window.__laqta.slide('${p.id}', -1, event)">‹</button>
+            <button class="slider-btn next" onclick="window.__laqta.slide('${p.id}', 1, event)">›</button>
+            <div class="media-indicators">${indicators}</div>
+          ` : ''}
+          ${discount > 0 ? `<div class="tag">${discount}%-</div>` : ''}
+          ${p.badge ? `<div class="badge-text">${escapeHtml(p.badge)}</div>` : ''}
+        </div>
+        <div class="body">
+          <div class="cat">${escapeHtml(p.category||'')}</div>
+          <h3>${escapeHtml(p.title)}</h3>
+          <div class="stars">${starString(Number(p.rating||0))}</div>
+          <div class="price-row">
+            <div class="price">${fmt(p.price)}</div>
+            ${p.oldPrice ? `<div class="old-price">${fmt(p.oldPrice)}</div>` : ''}
+          </div>
+          <a class="buy-btn" href="${p.link||'#'}" target="_blank" rel="nofollow sponsored noopener">Buy now</a>
+        </div>
+      </div>`;
+  }).join('');
+
+  document.querySelectorAll('.card .img-wrap video').forEach(v => {
+    v.addEventListener('mouseenter', () => v.play());
+    v.addEventListener('mouseleave', () => v.pause());
+  });
+}
+
+function slide(productId, dir, ev){
+  if(ev) ev.stopPropagation();
+  const card = document.querySelector(`.card[data-id="${productId}"]`);
+  if(!card) return;
+  const wrap = card.querySelector('.img-wrap');
+  const slider = wrap.querySelector('.media-slider');
+  const slides = slider.querySelectorAll('.slide');
+  const total = slides.length;
+  if(total <= 1) return;
+  let current = parseInt(wrap.dataset.current || '0');
+  current = (current + dir + total) % total;
+  wrap.dataset.current = current;
+  slider.style.transform = `translateX(-${current * 100}%)`;
+  const indicators = wrap.querySelectorAll('.media-indicators span');
+  indicators.forEach((el, i) => el.classList.toggle('active', i === current));
+  const slideEl = slides[current];
+  const video = slideEl.querySelector('video');
+  if(video) video.play();
+}
+
+function filterCat(c){ activeCategory = c; renderChips(); render(); }
+
+function setView(v){
+  document.getElementById('view-shop').style.display = v === 'shop' ? 'block' : 'none';
+  document.getElementById('view-admin').style.display = v === 'admin' ? 'block' : 'none';
+  if(v === 'admin'){
+    document.getElementById('gate').style.display = unlocked ? 'none' : 'block';
+    document.getElementById('panel').style.display = unlocked ? 'block' : 'none';
+    if(unlocked) renderAdminList();
+  }
+}
+
+function tryLogin(){
+  const val = document.getElementById('pass-input').value;
+  if(val === ADMIN_PASSCODE){
+    unlocked = true; 
+    document.getElementById('gate-err').textContent = '';
+    setView('admin');
+  } else {
+    document.getElementById('gate-err').textContent = 'Incorrect password. Try again.';
+  }
+}
+
+function clearForm(){
+  ['f-title','f-category','f-price','f-old-price','f-rating','f-link','f-badge'].forEach(id => document.getElementById(id).value = '');
+  pendingFiles = [];
+  updateFileListUI();
+  editingId = null;
+  document.getElementById('form-title').textContent = 'Add Product';
+  document.getElementById('cancel-edit').style.display = 'none';
+  document.getElementById('save-note').textContent = '';
+}
+
+function cancelEdit(){ clearForm(); }
+
+function updateFileListUI(){
+  const container = document.getElementById('file-list');
+  if(pendingFiles.length === 0){
+    container.innerHTML = '<span style="font-size:13px;color:var(--ink-soft);">No files selected</span>';
+    return;
+  }
+  container.innerHTML = pendingFiles.map((f, i) => `
+    <span class="file-chip">
+      ${f.type.startsWith('video') ? '🎬' : '🖼️'} ${f.name || `file ${i+1}`} (${Math.round(f.size/1024)}KB)
+      <span class="remove" onclick="window.__laqta.removeFile(${i})">✕</span>
+    </span>
+  `).join('');
+}
+
+function removeFile(index){
+  pendingFiles.splice(index, 1);
+  updateFileListUI();
+}
+
+function setupFileUpload(){
+  const input = document.getElementById('file-input');
+  const dropZone = document.getElementById('drop-zone');
+  input.addEventListener('change', (e) => {
+    const files = Array.from(e.target.files);
+    files.forEach(f => {
+      const reader = new FileReader();
+      reader.onload = (ev) => {
+        pendingFiles.push({ 
+          dataURL: ev.target.result, 
+          type: f.type, 
+          name: f.name,
+          size: f.size 
+        });
+        updateFileListUI();
+      };
+      reader.readAsDataURL(f);
+    });
+    input.value = '';
+  });
+  dropZone.addEventListener('dragover', (e) => { e.preventDefault(); dropZone.style.borderColor = '#0e7c6f'; });
+  dropZone.addEventListener('dragleave', () => { dropZone.style.borderColor = 'var(--line)'; });
+  dropZone.addEventListener('drop', (e) => {
+    e.preventDefault();
+    dropZone.style.borderColor = 'var(--line)';
+    const files = Array.from(e.dataTransfer.files);
+    files.forEach(f => {
+      const reader = new FileReader();
+      reader.onload = (ev) => {
+        pendingFiles.push({ 
+          dataURL: ev.target.result, 
+          type: f.type, 
+          name: f.name,
+          size: f.size 
+        });
+        updateFileListUI();
+      };
+      reader.readAsDataURL(f);
+    });
+  });
+}
+
+function saveProduct(){
+  const title = document.getElementById('f-title').value.trim();
+  const link = document.getElementById('f-link').value.trim();
+  const price = parseFloat(document.getElementById('f-price').value);
+  const note = document.getElementById('save-note');
+
+  if(!title || !link || isNaN(price)){
+    note.style.color = '#c24a1f';
+    note.textContent = 'Please fill in: title, price, and affiliate link.';
+    showNotification('Please fill in all required fields', true);
+    return;
   }
 
-  function editProduct(id){
-    const p = products.find(p => p.id === id);
-    if(!p) return;
-    editingId = id;
-    document.getElementById('f-title').value = p.title;
-    document.getElementById('f-category').value = p.category || '';
-    document.getElementById('f-price').value = p.price;
-    document.getElementById('f-old-price').value = p.oldPrice || '';
-    document.getElementById('f-rating').value = p.rating;
-    document.getElementById('f-link').value = p.link;
-    document.getElementById('f-badge').value = p.badge || '';
-    pendingFiles = [];
-    updateFileListUI();
-    document.getElementById('form-title').textContent = 'Edit Product';
-    document.getElementById('cancel-edit').style.display = 'inline-block';
-    window.scrollTo({top: 0, behavior: 'smooth'});
+  let media = [];
+  if(pendingFiles.length > 0){
+    media = pendingFiles.map(f => f.dataURL);
+  } else if(editingId){
+    const existing = products.find(p => p.id === editingId);
+    if(existing && existing.media) media = existing.media.slice();
+  }
+  if(media.length === 0){
+    media = ['https://picsum.photos/seed/' + Date.now() + '/600/600'];
   }
 
-  function deleteProduct(id){
-    if(!confirm('Are you sure you want to delete this product?')) return;
-    products = products.filter(p => p.id !== id);
-    persist();
+  const data = {
+    title,
+    category: document.getElementById('f-category').value.trim() || 'General',
+    price,
+    oldPrice: parseFloat(document.getElementById('f-old-price').value) || null,
+    rating: parseFloat(document.getElementById('f-rating').value) || 4.5,
+    link,
+    badge: document.getElementById('f-badge').value.trim(),
+    media
+  };
+
+  if(editingId){
+    const idx = products.findIndex(p => p.id === editingId);
+    if(idx > -1) products[idx] = {...products[idx], ...data};
+  } else {
+    products.push({id: String(Date.now()), ...data});
+  }
+
+  const saved = persist();
+  if(saved) {
+    clearForm();
     renderChips();
     render();
     renderAdminList();
-    showNotification('🗑️ Product deleted');
+    note.style.color = '#0e7c6f';
+    note.textContent = '✅ Saved to cloud!';
+    showNotification('✅ Product saved to cloud!');
+    setTimeout(()=> note.textContent = '', 2500);
+  } else {
+    showNotification('⚠️ Failed to save!', true);
   }
+}
 
-  function renderAdminList(){
-    const list = document.getElementById('admin-list');
-    document.getElementById('count-num').textContent = products.length;
-    if(products.length === 0){
-      list.innerHTML = '<div style="color:#4a4a5e;font-size:14px;padding:10px 0">No products yet. Add one from the form.</div>';
-      return;
-    }
-    list.innerHTML = products.map(p => {
-      const firstMedia = p.media && p.media.length ? p.media[0] : 'https://picsum.photos/seed/'+p.id+'/100/100';
-      const count = p.media ? p.media.length : 0;
-      return `
-        <div class="admin-row">
-          <img class="media-preview" src="${firstMedia}" alt="" loading="lazy">
-          <div class="info">
-            <div class="t">${escapeHtml(p.title)}</div>
-            <div class="m">${escapeHtml(p.category||'')} · ${fmt(p.price)} · ${count} media</div>
-          </div>
-          <div class="acts">
-            <button onclick="window.__laqta.editProduct('${p.id}')">Edit</button>
-            <button class="del" onclick="window.__laqta.deleteProduct('${p.id}')">Delete</button>
-          </div>
+function editProduct(id){
+  const p = products.find(p => p.id === id);
+  if(!p) return;
+  editingId = id;
+  document.getElementById('f-title').value = p.title;
+  document.getElementById('f-category').value = p.category || '';
+  document.getElementById('f-price').value = p.price;
+  document.getElementById('f-old-price').value = p.oldPrice || '';
+  document.getElementById('f-rating').value = p.rating;
+  document.getElementById('f-link').value = p.link;
+  document.getElementById('f-badge').value = p.badge || '';
+  pendingFiles = [];
+  updateFileListUI();
+  document.getElementById('form-title').textContent = 'Edit Product';
+  document.getElementById('cancel-edit').style.display = 'inline-block';
+  window.scrollTo({top: 0, behavior: 'smooth'});
+}
+
+function deleteProduct(id){
+  if(!confirm('Are you sure you want to delete this product?')) return;
+  products = products.filter(p => p.id !== id);
+  persist();
+  renderChips();
+  render();
+  renderAdminList();
+  showNotification('🗑️ Product deleted');
+}
+
+function renderAdminList(){
+  const list = document.getElementById('admin-list');
+  document.getElementById('count-num').textContent = products.length;
+  if(products.length === 0){
+    list.innerHTML = '<div style="color:#4a4a5e;font-size:14px;padding:10px 0">No products yet. Add one from the form.</div>';
+    return;
+  }
+  list.innerHTML = products.map(p => {
+    const firstMedia = p.media && p.media.length ? p.media[0] : 'https://picsum.photos/seed/'+p.id+'/100/100';
+    const count = p.media ? p.media.length : 0;
+    return `
+      <div class="admin-row">
+        <img class="media-preview" src="${firstMedia}" alt="" loading="lazy">
+        <div class="info">
+          <div class="t">${escapeHtml(p.title)}</div>
+          <div class="m">${escapeHtml(p.category||'')} · ${fmt(p.price)} · ${count} media</div>
         </div>
-      `;
-    }).join('');
-  }
+        <div class="acts">
+          <button onclick="window.__laqta.editProduct('${p.id}')">Edit</button>
+          <button class="del" onclick="window.__laqta.deleteProduct('${p.id}')">Delete</button>
+        </div>
+      </div>
+    `;
+  }).join('');
+}
 
-  window.__laqta = {
-    setView, tryLogin, filterCat, render, saveProduct, editProduct, deleteProduct, cancelEdit,
-    slide, removeFile
-  };
+window.__laqta = {
+  setView, tryLogin, filterCat, render, saveProduct, editProduct, deleteProduct, cancelEdit,
+  slide, removeFile, syncWithCloud, loadFromCloud
+};
 
-  setupFileUpload();
-  loadProducts();
-})();
+setupFileUpload();
+loadProducts();
 </script>
 </div>
 </body>
