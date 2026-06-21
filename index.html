@@ -1,0 +1,924 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Laqta | Daily Commission Deals from AliExpress</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+  <style>
+    /* reset & base */
+    html, body { margin:0; padding:0; background:#f4f6f9; }
+    #laqta-app {
+      --bg: #ffffff;
+      --card: #fbf9f9;
+      --ink: #1a1a2e;
+      --ink-soft: #4a4a5e;
+      --teal: #0e7c6f;
+      --teal-deep: #065a4f;
+      --coral: #e25a2a;
+      --coral-deep: #c24a1f;
+      --gold: #d4a12a;
+      --line: #e2e6ea;
+      --shadow: 0 8px 30px rgba(0,0,0,0.06);
+      --radius: 20px;
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      color: var(--ink);
+      background: var(--bg);
+      min-height: 100vh;
+      line-height: 1.5;
+      direction: ltr;
+    }
+    #laqta-app * { box-sizing: border-box; }
+    #laqta-app .wrap { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+
+    /* header – AliExpress style */
+    #laqta-app header.site {
+      background: #ffffff;
+      color: var(--ink);
+      position: sticky; top: 0; z-index: 40;
+      border-bottom: 1px solid var(--line);
+      box-shadow: 0 2px 12px rgba(0,0,0,0.02);
+    }
+    #laqta-app .site-row {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 10px 0;
+    }
+    #laqta-app .brand {
+      display: flex; align-items: center; gap: 8px;
+      font-weight: 700; font-size: 24px; letter-spacing: -0.5px; cursor: pointer;
+      color: var(--teal-deep);
+    }
+    #laqta-app .brand .logo-icon {
+      display: flex; align-items: center; gap: 4px;
+      background: var(--teal-deep); color: #fff; padding: 6px 14px 6px 12px;
+      border-radius: 40px; font-size: 14px; font-weight: 600;
+    }
+    #laqta-app .brand .logo-icon span { color: #fdb813; margin-left: 4px; }
+    #laqta-app .brand .logo-icon .ali { font-weight: 700; }
+    #laqta-app nav.site-nav { display: flex; gap: 6px; }
+    #laqta-app nav.site-nav button {
+      background: transparent; border: 1px solid var(--line);
+      color: var(--ink-soft); padding: 8px 20px; border-radius: 40px;
+      font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 500;
+      cursor: pointer; transition: all .15s;
+    }
+    #laqta-app nav.site-nav button:hover { background: var(--teal); color: #fff; border-color: var(--teal); }
+    #laqta-app nav.site-nav button.active {
+      background: var(--teal); border-color: var(--teal); color: #fff;
+    }
+
+    /* ticker – AliExpress orange */
+    #laqta-app .ticker {
+      background: #ff6a00; color: #fff; overflow: hidden;
+      white-space: nowrap; font-weight: 500; font-size: 13px;
+      border-bottom: 1px solid rgba(255,255,255,0.15);
+    }
+    #laqta-app .ticker-track {
+      display: inline-block; padding: 6px 0;
+      animation: scroll-ticker 28s linear infinite;
+    }
+    #laqta-app .ticker-track span { margin: 0 30px; }
+    @keyframes scroll-ticker {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+    @media (prefers-reduced-motion: reduce) { #laqta-app .ticker-track { animation: none; } }
+
+    /* hero */
+    #laqta-app .hero {
+      background: #ffffff; border-bottom: 1px solid var(--line);
+      padding: 40px 0 28px;
+    }
+    #laqta-app .hero h1 {
+      font-weight: 700; font-size: clamp(28px, 4.2vw, 44px);
+      margin: 0 0 8px; color: var(--ink);
+    }
+    #laqta-app .hero h1 em { font-style: normal; color: #ff6a00; }
+    #laqta-app .hero p.lead {
+      max-width: 520px; color: var(--ink-soft); font-size: 16px; margin: 0 0 18px;
+    }
+    #laqta-app .search-box {
+      display: flex; max-width: 440px; background: #fff;
+      border: 2px solid var(--line); border-radius: 40px; overflow: hidden;
+      transition: border-color .2s;
+    }
+    #laqta-app .search-box:focus-within { border-color: var(--teal); }
+    #laqta-app .search-box input {
+      flex: 1; border: none; padding: 11px 18px;
+      font-size: 15px; background: transparent; outline: none;
+    }
+    #laqta-app .search-box button {
+      border: none; background: var(--teal); color: #fff;
+      padding: 0 24px; font-weight: 600; cursor: pointer;
+    }
+
+    /* chips */
+    #laqta-app .chips {
+      display: flex; gap: 8px; flex-wrap: wrap; padding: 18px 0 2px;
+    }
+    #laqta-app .chips button {
+      background: #fff; border: 1px solid var(--line); color: var(--ink-soft);
+      padding: 6px 16px; border-radius: 40px; font-size: 13px; font-weight: 500;
+      cursor: pointer; transition: all .15s;
+    }
+    #laqta-app .chips button.active,
+    #laqta-app .chips button:hover {
+      background: var(--teal); border-color: var(--teal); color: #fff;
+    }
+
+    /* product grid – clean cards */
+    #laqta-app main.shop { padding: 32px 0 70px; }
+    #laqta-app .grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 24px;
+    }
+    #laqta-app .card {
+      background: var(--card); border: 1px solid var(--line); border-radius: var(--radius);
+      overflow: hidden; display: flex; flex-direction: column;
+      transition: transform .2s, box-shadow .2s;
+    }
+    #laqta-app .card:hover { transform: translateY(-4px); box-shadow: var(--shadow); }
+
+    /* media slider */
+    #laqta-app .card .img-wrap {
+      position: relative; aspect-ratio: 1/1; background: #f0f2f5; overflow: hidden;
+    }
+    #laqta-app .card .img-wrap .media-slider {
+      display: flex; width: 100%; height: 100%; transition: transform 0.35s ease;
+    }
+    #laqta-app .card .img-wrap .media-slider .slide {
+      min-width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;
+      background: #f0f2f5;
+    }
+    #laqta-app .card .img-wrap .media-slider .slide img,
+    #laqta-app .card .img-wrap .media-slider .slide video {
+      width: 100%; height: 100%; object-fit: cover; display: block;
+    }
+    #laqta-app .card .img-wrap .slider-btn {
+      position: absolute; top: 50%; transform: translateY(-50%);
+      background: rgba(255,255,255,0.85); color: #1a1a2e; border: none;
+      width: 32px; height: 32px; border-radius: 50%; cursor: pointer;
+      font-size: 18px; display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08); transition: all .15s;
+      z-index: 5;
+    }
+    #laqta-app .card .img-wrap .slider-btn:hover { background: #fff; box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
+    #laqta-app .card .img-wrap .slider-btn.prev { left: 8px; }
+    #laqta-app .card .img-wrap .slider-btn.next { right: 8px; }
+    #laqta-app .card .img-wrap .media-indicators {
+      position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%);
+      display: flex; gap: 6px; z-index: 5;
+    }
+    #laqta-app .card .img-wrap .media-indicators span {
+      width: 7px; height: 7px; border-radius: 50%; background: rgba(255,255,255,0.5);
+      cursor: pointer; transition: background .2s;
+    }
+    #laqta-app .card .img-wrap .media-indicators span.active { background: #fff; }
+
+    #laqta-app .tag {
+      position: absolute; top: 12px; right: -2px;
+      background: #ff6a00; color: #fff; font-weight: 700; font-size: 13px;
+      padding: 5px 14px 5px 10px; z-index: 10;
+      clip-path: polygon(0 0, 86% 0, 100% 50%, 86% 100%, 0 100%);
+      filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+    }
+    #laqta-app .badge-text {
+      position: absolute; top: 12px; left: 12px;
+      background: rgba(0,0,0,0.7); color: #fff; font-size: 11px;
+      font-weight: 600; padding: 3px 12px; border-radius: 40px; z-index: 10;
+      backdrop-filter: blur(4px);
+    }
+
+    #laqta-app .card .body { padding: 14px 16px 16px; display: flex; flex-direction: column; gap: 6px; flex:1; }
+    #laqta-app .card .cat { font-size: 12px; color: var(--teal); font-weight: 600; text-transform: uppercase; letter-spacing: 0.3px; }
+    #laqta-app .card h3 {
+      font-size: 15px; font-weight: 600; margin:0;
+      min-height: 40px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+      color: var(--ink);
+    }
+    #laqta-app .stars { color: #f5a623; font-size: 14px; letter-spacing: 1px; }
+    #laqta-app .price-row { display: flex; align-items: baseline; gap: 8px; margin-top: auto; }
+    #laqta-app .price { font-size: 22px; font-weight: 700; color: #ff6a00; }
+    #laqta-app .old-price { font-size: 13px; color: #8f9ea3; text-decoration: line-through; }
+    #laqta-app .buy-btn {
+      margin-top: 6px; display: block; text-align: center; text-decoration: none;
+      background: #ff6a00; color: #fff; padding: 10px; border-radius: 40px;
+      font-weight: 600; font-size: 14px; transition: background .15s;
+    }
+    #laqta-app .buy-btn:hover { background: #e55d00; }
+
+    #laqta-app .empty { text-align: center; padding: 70px 20px; color: var(--ink-soft); }
+    #laqta-app .empty .title { font-size: 22px; font-weight: 600; color: var(--ink); margin-bottom: 8px; }
+    #laqta-app .empty button {
+      margin-top: 16px; background: #ff6a00; color: #fff; border: none;
+      padding: 12px 28px; border-radius: 40px; font-weight: 600; cursor: pointer;
+    }
+
+    /* admin */
+    #laqta-app .admin-wrap { padding: 40px 0 70px; }
+    #laqta-app .gate {
+      max-width: 380px; margin: 60px auto; background: #fff; border: 1px solid var(--line);
+      border-radius: 24px; padding: 32px; text-align: center;
+    }
+    #laqta-app .gate h2 { font-weight: 700; color: var(--teal-deep); margin-top: 0; }
+    #laqta-app .gate input {
+      width: 100%; padding: 12px 14px; border: 1.5px solid var(--line); border-radius: 40px;
+      font-size: 15px; margin: 14px 0; outline: none;
+    }
+    #laqta-app .gate input:focus { border-color: var(--teal); }
+    #laqta-app .gate button {
+      width: 100%; background: var(--teal-deep); color: #fff; border: none; padding: 12px;
+      border-radius: 40px; font-weight: 600; cursor: pointer; font-size: 15px;
+    }
+    #laqta-app .gate .err { color: var(--coral-deep); font-size: 13px; min-height: 20px; }
+    #laqta-app .gate .hint { font-size: 12px; color: var(--ink-soft); margin-top: 10px; }
+
+    #laqta-app .panel-grid {
+      display: grid; grid-template-columns: 400px 1fr; gap: 28px; align-items: start;
+    }
+    @media (max-width: 860px) { #laqta-app .panel-grid { grid-template-columns: 1fr; } }
+    #laqta-app .form-card, #laqta-app .list-card {
+      background: #fff; border: 1px solid var(--line); border-radius: 24px; padding: 24px;
+    }
+    #laqta-app .form-card h2, #laqta-app .list-card h2 {
+      font-weight: 700; font-size: 20px; color: var(--teal-deep); margin: 0 0 16px;
+    }
+    #laqta-app .field { margin-bottom: 14px; }
+    #laqta-app .field label { display: block; font-size: 13px; font-weight: 600; color: var(--ink-soft); margin-bottom: 4px; }
+    #laqta-app .field input, #laqta-app .field select {
+      width: 100%; padding: 10px 14px; border: 1.5px solid var(--line); border-radius: 12px;
+      font-size: 14px; outline: none;
+    }
+    #laqta-app .field input:focus, #laqta-app .field select:focus { border-color: var(--teal); }
+    #laqta-app .field-row { display: flex; gap: 10px; }
+    #laqta-app .field-row .field { flex: 1; }
+    #laqta-app .form-actions { display: flex; gap: 10px; margin-top: 6px; }
+    #laqta-app .btn-primary {
+      flex:1; background: #ff6a00; color:#fff; border:none; padding:12px;
+      border-radius:40px; font-weight:600; cursor:pointer; font-size:14px;
+    }
+    #laqta-app .btn-primary:hover { background: #e55d00; }
+    #laqta-app .btn-primary:disabled { opacity: .6; cursor: not-allowed; }
+    #laqta-app .btn-ghost {
+      background:transparent; border:1.5px solid var(--line); color:var(--ink-soft);
+      padding:12px 18px; border-radius:40px; cursor:pointer; font-size:14px;
+    }
+    #laqta-app .save-note { font-size:13px; color: var(--teal); min-height: 20px; margin-top: 8px; }
+    #laqta-app .admin-row {
+      display: flex; align-items: center; gap: 12px; padding: 10px;
+      border:1px solid var(--line); border-radius:16px; margin-bottom:10px;
+    }
+    #laqta-app .admin-row .media-preview {
+      width: 56px; height: 56px; border-radius: 12px; object-fit: cover; flex-shrink:0;
+      background: #f0f2f5;
+    }
+    #laqta-app .admin-row .info { flex:1; min-width:0; }
+    #laqta-app .admin-row .info .t { font-weight:600; font-size:14px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+    #laqta-app .admin-row .info .m { font-size:12.5px; color:var(--ink-soft); }
+    #laqta-app .admin-row .acts { display:flex; gap:6px; }
+    #laqta-app .admin-row .acts button {
+      border:none; background:var(--bg); color:var(--ink); padding:6px 14px;
+      border-radius:30px; font-size:12px; font-weight:500; cursor:pointer;
+    }
+    #laqta-app .admin-row .acts button.del { background:#fce9e4; color:var(--coral-deep); }
+    #laqta-app .disclosure-box {
+      background: #f8fafb; border:1px dashed var(--line); border-radius:16px;
+      padding:14px; font-size:12.5px; color:var(--ink-soft); margin-top:20px;
+    }
+
+    /* file upload */
+    #laqta-app .file-upload-wrap {
+      display: flex; flex-direction: column; gap: 8px;
+    }
+    #laqta-app .file-upload-wrap .drop-zone {
+      border: 2px dashed var(--line); border-radius: 16px; padding: 16px;
+      text-align: center; background: #fafcfc; cursor: pointer;
+      transition: border-color .2s;
+      font-size: 14px; color: var(--ink-soft);
+    }
+    #laqta-app .file-upload-wrap .drop-zone:hover { border-color: var(--teal); }
+    #laqta-app .file-upload-wrap .file-list {
+      display: flex; flex-wrap: wrap; gap: 8px; margin-top: 6px;
+    }
+    #laqta-app .file-upload-wrap .file-list .file-chip {
+      background: #f0f2f5; padding: 4px 12px; border-radius: 30px;
+      font-size: 12px; display: flex; align-items: center; gap: 6px;
+    }
+    #laqta-app .file-upload-wrap .file-list .file-chip .remove {
+      cursor: pointer; color: #e25a2a; font-weight: 700;
+    }
+    #laqta-app .file-upload-wrap input[type="file"] { display: none; }
+
+    footer.site {
+      background: #1a1a2e; color: rgba(255,255,255,.7);
+      padding: 24px 0; font-size: 13px;
+    }
+    footer.site .wrap { display: flex; flex-direction: column; gap: 4px; }
+    footer.site strong { color: #fff; }
+
+    /* Hidden admin button at bottom */
+    .hidden-admin-btn {
+      bottom: 20px;
+      right: 20px;
+      background: rgba(255, 106, 0, 0);
+      color: rgba(255, 106, 0, 0.004);
+      border: 1px solid rgba(255, 106, 0, 0);
+      padding: 8px 14px;
+      border-radius: 40px;
+      font-size: 12px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      z-index: 999;
+      font-family: 'Inter', sans-serif;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+      backdrop-filter: blur(4px);
+    }
+
+    /* Back to shop button in admin */
+    .back-to-shop-btn {
+      background: var(--teal);
+      color: #fff;
+      border: none;
+      padding: 10px 24px;
+      border-radius: 40px;
+      font-weight: 600;
+      cursor: pointer;
+      font-size: 14px;
+      transition: background .15s;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 20px;
+    }
+    .back-to-shop-btn:hover {
+      background: var(--teal-deep);
+    }
+    .admin-header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    /* Notification */
+    .notification {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      background: #0e7c6f;
+      color: #fff;
+      padding: 12px 24px;
+      border-radius: 12px;
+      font-weight: 500;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.3s ease;
+      z-index: 1000;
+    }
+    .notification.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Sync status */
+    .sync-status {
+      font-size: 12px;
+      color: var(--ink-soft);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .sync-status .dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: #d4a12a;
+    }
+    .sync-status.ok .dot { background: #0e7c6f; }
+    .sync-status.err .dot { background: #c24a1f; }
+
+  </style>
+</head>
+<body>
+<div id="laqta-app">
+
+<header class="site">
+
+  <div class="ticker">
+    <div class="ticker-track">
+      <span>🔥 Today's deals end soon</span>
+      <span>📦 Free tracked shipping</span>
+      <span>💸 Up to 60% off</span>
+      <span>⭐ Handpicked weekly</span>
+      <span>🔥 Today's deals end soon</span>
+      <span>📦 Free tracked shipping</span>
+      <span>💸 Up to 60% off</span>
+      <span>⭐ Handpicked weekly</span>
+      <span>🔥 Today's deals end soon</span>
+      <span>📦 Free tracked shipping</span>
+      <span>💸 Up to 60% off</span>
+      <span>⭐ Handpicked weekly</span>
+      <span>🔥 Today's deals end soon</span>
+      <span>📦 Free tracked shipping</span>
+      <span>💸 Up to 60% off</span>
+      <span>⭐ Handpicked weekly</span>
+    </div>
+  </div>
+</header>
+
+<!-- SHOP VIEW -->
+<div id="view-shop">
+  <section class="hero">
+      <div class="wrap site-row">
+    <div class="brand" onclick="window.__laqta.setView('shop')">
+      <span class="logo-icon" style="padding: 10px 10px; background: orange; font-size: 20px; margin-left: 20px;">
+        <span class="ali" style="color: white;">TE</span>MU<span style="color: red;">✦</span>
+      </span>
+    </div>
+  </div>
+    <div class="wrap">
+      <h1>Daily deals... <em>before they fly</em></h1>
+      <p class="lead">Curated products at discounted prices from TEMU. Updated regularly so you never miss a deal.</p>
+      <div class="search-box">
+        <input id="search-input" type="text" placeholder="Search products..." oninput="window.__laqta.render()">
+        <button onclick="window.__laqta.render()">Search</button>
+      </div>
+      <div class="chips" id="chips"></div>
+    </div>
+  </section>
+  <main class="shop">
+    <div class="wrap">
+      <div id="grid" class="grid"></div>
+      <div id="empty-state" style="display:none" class="empty">
+        <div class="title">No products yet</div>
+      </div>
+    </div>
+  </main>
+</div>
+
+<!-- ADMIN VIEW -->
+<div id="view-admin" style="display:none">
+  <div class="wrap admin-wrap">
+    <div id="gate" class="gate">
+      <h2>Admin Access</h2>
+      <input id="pass-input" type="password" placeholder="Enter password" onkeydown="if(event.key==='Enter')window.__laqta.tryLogin()">
+      <button onclick="window.__laqta.tryLogin()">Login</button>
+      <div class="err" id="gate-err"></div>
+    </div>
+    <div id="panel" style="display:none">
+      <div class="admin-header">
+        <button class="back-to-shop-btn" onclick="window.__laqta.setView('shop')">
+          ← Back to Shop
+        </button>
+        <span class="sync-status" id="sync-status"><span class="dot"></span><span id="sync-text">Connecting…</span></span>
+      </div>
+      <div class="panel-grid">
+        <div class="form-card">
+          <h2 id="form-title">Add Product</h2>
+          <div class="field"><label>Product title</label><input id="f-title" placeholder="e.g. Wireless Bluetooth Headphones"></div>
+          <div class="field"><label>Category</label><input id="f-category" placeholder="Electronics"></div>
+          <div class="field-row">
+            <div class="field"><label>Current price ($)</label><input id="f-price" type="number" step="0.01" placeholder="19.99"></div>
+            <div class="field"><label>Old price ($)</label><input id="f-old-price" type="number" step="0.01" placeholder="39.99"></div>
+          </div>
+          <div class="field"><label>Rating (0-5)</label><input id="f-rating" type="number" min="0" max="5" step="0.1" placeholder="4.5"></div>
+          <div class="field"><label>Affiliate link</label><input id="f-link" placeholder="https://aliexpress.com/..."></div>
+          <div class="field"><label>Badge (optional)</label><input id="f-badge" placeholder="Best seller"></div>
+
+          <div class="field">
+            <label>Upload images / videos (multiple)</label>
+            <div class="file-upload-wrap">
+              <div class="drop-zone" id="drop-zone" onclick="document.getElementById('file-input').click()">
+                📁 Drag & drop or click to add media
+              </div>
+              <input type="file" id="file-input" accept="image/*,video/*" multiple>
+              <div class="file-list" id="file-list"></div>
+            </div>
+          </div>
+
+          <div class="form-actions">
+            <button class="btn-primary" id="save-btn" onclick="window.__laqta.saveProduct()">Save product</button>
+            <button class="btn-ghost" id="cancel-edit" style="display:none" onclick="window.__laqta.cancelEdit()">Cancel</button>
+          </div>
+          <div class="save-note" id="save-note"></div>
+        </div>
+
+        <div class="list-card">
+          <h2>Products (<span id="count-num">0</span>)</h2>
+          <div id="admin-list"></div>
+          <div class="disclosure-box">
+            ⚡ Reminder: make sure each product has the correct affiliate link, and add a clear disclosure for visitors that these are affiliate links.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer class="site">
+  <div class="wrap" style="margin-left: 20px;">
+  </div>
+    <button class="hidden-admin-btn" style="margin-top: 20px;" onclick="window.__laqta.setView('admin')"> Admin</button>
+</footer>
+
+<!-- Notification -->
+<div id="notification" class="notification">✅ Product saved successfully!</div>
+
+<script type="module">
+  // ========== FIREBASE SETUP ==========
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+  import {
+    getFirestore, collection, doc, setDoc, addDoc, deleteDoc,
+    onSnapshot, getDocs
+  } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyCx520CJz3MfINDmH6EF1HaDYt-3Bg4jQQ",
+    authDomain: "temu-19ebe.firebaseapp.com",
+    projectId: "temu-19ebe",
+    storageBucket: "temu-19ebe.firebasestorage.app",
+    messagingSenderId: "345943293757",
+    appId: "1:345943293757:web:52e7407695e6d82a254f54",
+    measurementId: "G-7WWVTC557P"
+  };
+
+  const fbApp = initializeApp(firebaseConfig);
+  const db = getFirestore(fbApp);
+  const productsCol = collection(db, "products");
+
+(function(){
+  const ADMIN_PASSCODE = 'admin123';
+  let products = [];
+  let activeCategory = 'All';
+  let editingId = null;
+  let unlocked = false;
+  let pendingFiles = [];
+  let firstSnapshotReceived = false;
+
+  const demoSeed = [
+    {id:'1', title:'Wireless Bluetooth Headphones ANC', media: ['https://picsum.photos/seed/laqta1/600/600'], price:18.99, oldPrice:42.00, category:'Electronics', rating:4.6, link:'#', badge:'Best seller'},
+    {id:'2', title:'Smart Sports Watch AMOLED', media: ['https://picsum.photos/seed/laqta2/600/600', 'https://picsum.photos/seed/laqta22/600/600'], price:27.50, oldPrice:55.00, category:'Electronics', rating:4.4, link:'#', badge:''},
+    {id:'3', title:'RGB LED Strip for Room', media: ['https://picsum.photos/seed/laqta3/600/600'], price:9.99, oldPrice:19.99, category:'Home', rating:4.2, link:'#', badge:''},
+    {id:'4', title:'Portable USB Blender', media: ['https://picsum.photos/seed/laqta4/600/600', 'https://picsum.photos/seed/laqta44/600/600'], price:12.40, oldPrice:24.00, category:'Home', rating:4.0, link:'#', badge:'Limited offer'},
+    {id:'5', title:'Classic Metal Frame Sunglasses', media: ['https://picsum.photos/seed/laqta5/600/600'], price:8.50, oldPrice:16.00, category:'Fashion', rating:4.3, link:'#', badge:''},
+    {id:'6', title:'Resistance Bands Set (5pcs)', media: ['https://picsum.photos/seed/laqta6/600/600'], price:11.99, oldPrice:23.99, category:'Sports', rating:4.7, link:'#', badge:''}
+  ];
+
+  // ========== FIRESTORE SYNC ==========
+  function setSyncStatus(state, text){
+    const el = document.getElementById('sync-status');
+    const txt = document.getElementById('sync-text');
+    if(!el) return;
+    el.classList.remove('ok','err');
+    if(state) el.classList.add(state);
+    txt.textContent = text;
+  }
+
+  async function seedIfEmpty(){
+    try {
+      const snap = await getDocs(productsCol);
+      if(snap.empty){
+        for(const p of demoSeed){
+          const {id, ...rest} = p;
+          await setDoc(doc(productsCol, id), rest);
+        }
+      }
+    } catch(e){
+      console.warn('Seed check failed:', e);
+    }
+  }
+
+  function listenProducts(){
+    onSnapshot(productsCol, (snapshot) => {
+      products = snapshot.docs.map(d => ({ id: d.id, ...d.data() }));
+      firstSnapshotReceived = true;
+      setSyncStatus('ok', 'Synced ✓');
+      renderChips();
+      render();
+      renderAdminList();
+    }, (err) => {
+      console.error('Firestore listen error:', err);
+      setSyncStatus('err', 'Connection error');
+      showNotification('⚠️ Could not connect to the database', true);
+    });
+  }
+
+  function showNotification(message, isError = false){
+    const el = document.getElementById('notification');
+    el.textContent = message;
+    el.style.background = isError ? '#c24a1f' : '#0e7c6f';
+    el.classList.add('show');
+    clearTimeout(el._timeout);
+    el._timeout = setTimeout(() => el.classList.remove('show'), 3000);
+  }
+
+  function fmt(n){ return '$' + Number(n).toFixed(2); }
+  function starString(rating){
+    const full = Math.round(rating);
+    return '★'.repeat(full) + '☆'.repeat(5-full) + '  ' + rating.toFixed(1);
+  }
+  function escapeHtml(s){
+    return String(s).replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+  }
+
+  function renderChips(){
+    const cats = ['All', ...new Set(products.map(p=>p.category).filter(Boolean))];
+    const chipsEl = document.getElementById('chips');
+    chipsEl.innerHTML = cats.map(c =>
+      `<button class="${c===activeCategory?'active':''}" onclick="window.__laqta.filterCat('${c.replace(/'/g,"\\'")}')">${c}</button>`
+    ).join('');
+  }
+
+  function render(){
+    const term = (document.getElementById('search-input').value || '').trim();
+    let list = products.filter(p => activeCategory === 'All' || p.category === activeCategory);
+    if(term) list = list.filter(p => p.title.toLowerCase().includes(term.toLowerCase()));
+
+    const grid = document.getElementById('grid');
+    const empty = document.getElementById('empty-state');
+    if(list.length === 0){
+      grid.innerHTML = '';
+      empty.style.display = 'block';
+      return;
+    }
+    empty.style.display = 'none';
+    grid.innerHTML = list.map((p) => {
+      const discount = p.oldPrice && p.oldPrice > p.price ? Math.round((1 - p.price/p.oldPrice)*100) : 0;
+      const media = p.media && p.media.length ? p.media : ['https://picsum.photos/seed/'+p.id+'/600/600'];
+      const slides = media.map((src) => {
+        const isVideo = src.match(/\.(mp4|webm|ogg)/i) || src.startsWith('data:video');
+        return `<div class="slide">
+          ${isVideo ? `<video src="${src}" muted playsinline></video>` : `<img src="${src}" alt="${escapeHtml(p.title)}" loading="lazy">`}
+        </div>`;
+      }).join('');
+      const indicators = media.map((_, i) => `<span class="${i===0?'active':''}" data-index="${i}"></span>`).join('');
+
+      return `
+        <div class="card" data-id="${p.id}">
+          <div class="img-wrap" data-slider-id="${p.id}" data-current="0">
+            <div class="media-slider" style="transform: translateX(0%);">
+              ${slides}
+            </div>
+            ${media.length > 1 ? `
+              <button class="slider-btn prev" onclick="window.__laqta.slide('${p.id}', -1, event)">‹</button>
+              <button class="slider-btn next" onclick="window.__laqta.slide('${p.id}', 1, event)">›</button>
+              <div class="media-indicators">${indicators}</div>
+            ` : ''}
+            ${discount > 0 ? `<div class="tag">${discount}%-</div>` : ''}
+            ${p.badge ? `<div class="badge-text">${escapeHtml(p.badge)}</div>` : ''}
+          </div>
+          <div class="body">
+            <div class="cat">${escapeHtml(p.category||'')}</div>
+            <h3>${escapeHtml(p.title)}</h3>
+            <div class="stars">${starString(Number(p.rating||0))}</div>
+            <div class="price-row">
+              <div class="price">${fmt(p.price)}</div>
+              ${p.oldPrice ? `<div class="old-price">${fmt(p.oldPrice)}</div>` : ''}
+            </div>
+            <a class="buy-btn" href="${p.link||'#'}" target="_blank" rel="nofollow sponsored noopener">Buy now</a>
+          </div>
+        </div>`;
+    }).join('');
+
+    document.querySelectorAll('.card .img-wrap video').forEach(v => {
+      v.addEventListener('mouseenter', () => v.play());
+      v.addEventListener('mouseleave', () => v.pause());
+    });
+  }
+
+  function slide(productId, dir, ev){
+    if(ev) ev.stopPropagation();
+    const card = document.querySelector(`.card[data-id="${productId}"]`);
+    if(!card) return;
+    const wrap = card.querySelector('.img-wrap');
+    const slider = wrap.querySelector('.media-slider');
+    const slides = slider.querySelectorAll('.slide');
+    const total = slides.length;
+    if(total <= 1) return;
+    let current = parseInt(wrap.dataset.current || '0');
+    current = (current + dir + total) % total;
+    wrap.dataset.current = current;
+    slider.style.transform = `translateX(-${current * 100}%)`;
+    const indicators = wrap.querySelectorAll('.media-indicators span');
+    indicators.forEach((el, i) => el.classList.toggle('active', i === current));
+    const slideEl = slides[current];
+    const video = slideEl.querySelector('video');
+    if(video) video.play();
+  }
+
+  function filterCat(c){ activeCategory = c; renderChips(); render(); }
+
+  function setView(v){
+    document.getElementById('view-shop').style.display = v === 'shop' ? 'block' : 'none';
+    document.getElementById('view-admin').style.display = v === 'admin' ? 'block' : 'none';
+    if(v === 'admin'){
+      document.getElementById('gate').style.display = unlocked ? 'none' : 'block';
+      document.getElementById('panel').style.display = unlocked ? 'block' : 'none';
+      if(unlocked) renderAdminList();
+    }
+  }
+
+  function tryLogin(){
+    const val = document.getElementById('pass-input').value;
+    if(val === ADMIN_PASSCODE){
+      unlocked = true;
+      document.getElementById('gate-err').textContent = '';
+      setView('admin');
+    } else {
+      document.getElementById('gate-err').textContent = 'Incorrect password. Try again.';
+    }
+  }
+
+  function clearForm(){
+    ['f-title','f-category','f-price','f-old-price','f-rating','f-link','f-badge'].forEach(id => document.getElementById(id).value = '');
+    pendingFiles = [];
+    updateFileListUI();
+    editingId = null;
+    document.getElementById('form-title').textContent = 'Add Product';
+    document.getElementById('cancel-edit').style.display = 'none';
+    document.getElementById('save-note').textContent = '';
+  }
+
+  function cancelEdit(){ clearForm(); }
+
+  function updateFileListUI(){
+    const container = document.getElementById('file-list');
+    if(pendingFiles.length === 0){
+      container.innerHTML = '<span style="font-size:13px;color:var(--ink-soft);">No files selected</span>';
+      return;
+    }
+    container.innerHTML = pendingFiles.map((f, i) => `
+      <span class="file-chip">
+        ${f.type.startsWith('video') ? '🎬' : '🖼️'} ${f.name || `file ${i+1}`}
+        <span class="remove" onclick="window.__laqta.removeFile(${i})">✕</span>
+      </span>
+    `).join('');
+  }
+
+  function removeFile(index){
+    pendingFiles.splice(index, 1);
+    updateFileListUI();
+  }
+
+  function setupFileUpload(){
+    const input = document.getElementById('file-input');
+    const dropZone = document.getElementById('drop-zone');
+    input.addEventListener('change', (e) => {
+      const files = Array.from(e.target.files);
+      files.forEach(f => {
+        const reader = new FileReader();
+        reader.onload = (ev) => {
+          pendingFiles.push({ dataURL: ev.target.result, type: f.type, name: f.name });
+          updateFileListUI();
+        };
+        reader.readAsDataURL(f);
+      });
+      input.value = '';
+    });
+    dropZone.addEventListener('dragover', (e) => { e.preventDefault(); dropZone.style.borderColor = '#0e7c6f'; });
+    dropZone.addEventListener('dragleave', () => { dropZone.style.borderColor = 'var(--line)'; });
+    dropZone.addEventListener('drop', (e) => {
+      e.preventDefault();
+      dropZone.style.borderColor = 'var(--line)';
+      const files = Array.from(e.dataTransfer.files);
+      files.forEach(f => {
+        const reader = new FileReader();
+        reader.onload = (ev) => {
+          pendingFiles.push({ dataURL: ev.target.result, type: f.type, name: f.name });
+          updateFileListUI();
+        };
+        reader.readAsDataURL(f);
+      });
+    });
+  }
+
+  async function saveProduct(){
+    const title = document.getElementById('f-title').value.trim();
+    const link = document.getElementById('f-link').value.trim();
+    const price = parseFloat(document.getElementById('f-price').value);
+    const note = document.getElementById('save-note');
+    const saveBtn = document.getElementById('save-btn');
+
+    if(!title || !link || isNaN(price)){
+      note.style.color = '#c24a1f';
+      note.textContent = 'Please fill in: title, price, and affiliate link.';
+      showNotification('Please fill in all required fields', true);
+      return;
+    }
+
+    let media = [];
+    if(pendingFiles.length > 0){
+      media = pendingFiles.map(f => f.dataURL);
+    } else if(editingId){
+      const existing = products.find(p => p.id === editingId);
+      if(existing && existing.media) media = existing.media.slice();
+    }
+    if(media.length === 0){
+      media = ['https://picsum.photos/seed/' + Date.now() + '/600/600'];
+    }
+
+    const data = {
+      title,
+      category: document.getElementById('f-category').value.trim() || 'General',
+      price,
+      oldPrice: parseFloat(document.getElementById('f-old-price').value) || null,
+      rating: parseFloat(document.getElementById('f-rating').value) || 4.5,
+      link,
+      badge: document.getElementById('f-badge').value.trim(),
+      media
+    };
+
+    saveBtn.disabled = true;
+    note.style.color = 'var(--ink-soft)';
+    note.textContent = 'Saving…';
+
+    try {
+      if(editingId){
+        await setDoc(doc(productsCol, editingId), data);
+      } else {
+        await addDoc(productsCol, data);
+      }
+      clearForm();
+      note.style.color = '#0e7c6f';
+      note.textContent = 'Saved ✓';
+      showNotification('✅ Product saved successfully!');
+      setTimeout(()=> note.textContent = '', 2500);
+    } catch(e){
+      console.error('Save failed:', e);
+      note.style.color = '#c24a1f';
+      note.textContent = 'Save failed: ' + e.message;
+      showNotification('⚠️ Save failed — check your Firestore rules', true);
+    } finally {
+      saveBtn.disabled = false;
+    }
+  }
+
+  function editProduct(id){
+    const p = products.find(p => p.id === id);
+    if(!p) return;
+    editingId = id;
+    document.getElementById('f-title').value = p.title;
+    document.getElementById('f-category').value = p.category || '';
+    document.getElementById('f-price').value = p.price;
+    document.getElementById('f-old-price').value = p.oldPrice || '';
+    document.getElementById('f-rating').value = p.rating;
+    document.getElementById('f-link').value = p.link;
+    document.getElementById('f-badge').value = p.badge || '';
+    pendingFiles = [];
+    updateFileListUI();
+    document.getElementById('form-title').textContent = 'Edit Product';
+    document.getElementById('cancel-edit').style.display = 'inline-block';
+    window.scrollTo({top: 0, behavior: 'smooth'});
+  }
+
+  async function deleteProduct(id){
+    if(!confirm('Are you sure you want to delete this product?')) return;
+    try {
+      await deleteDoc(doc(productsCol, id));
+      showNotification('🗑️ Product deleted');
+    } catch(e){
+      console.error('Delete failed:', e);
+      showNotification('⚠️ Delete failed: ' + e.message, true);
+    }
+  }
+
+  function renderAdminList(){
+    const list = document.getElementById('admin-list');
+    document.getElementById('count-num').textContent = products.length;
+    if(products.length === 0){
+      list.innerHTML = '<div style="color:#4a4a5e;font-size:14px;padding:10px 0">No products yet. Add one from the form.</div>';
+      return;
+    }
+    list.innerHTML = products.map(p => {
+      const firstMedia = p.media && p.media.length ? p.media[0] : 'https://picsum.photos/seed/'+p.id+'/100/100';
+      const count = p.media ? p.media.length : 0;
+      return `
+        <div class="admin-row">
+          <img class="media-preview" src="${firstMedia}" alt="">
+          <div class="info">
+            <div class="t">${escapeHtml(p.title)}</div>
+            <div class="m">${escapeHtml(p.category||'')} · ${fmt(p.price)} · ${count} media</div>
+          </div>
+          <div class="acts">
+            <button onclick="window.__laqta.editProduct('${p.id}')">Edit</button>
+            <button class="del" onclick="window.__laqta.deleteProduct('${p.id}')">Delete</button>
+          </div>
+        </div>
+      `;
+    }).join('');
+  }
+
+  window.__laqta = {
+    setView, tryLogin, filterCat, render, saveProduct, editProduct, deleteProduct, cancelEdit,
+    slide, removeFile
+  };
+
+  setupFileUpload();
+  setSyncStatus(null, 'Connecting…');
+  seedIfEmpty().then(listenProducts);
+})();
+</script>
+</div>
+</body>
+</html>
