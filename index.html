@@ -339,6 +339,36 @@
     }
   }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   // ========== PRODUCT FUNCTIONS ==========
   async function loadProducts(){
     const overlay = document.getElementById('loading-overlay');
@@ -353,17 +383,19 @@
       products = [
         { 
           id: '1', 
-          title: 'Large and Lightweight Drawing Board for Developing Basic Drawing Skills', 
+          title: '4pcs Set, Elastic Hidden Belt, Suitable for Both Men and Women, a Lazy Belt for Pants with a Tightening Strap at the Waist, Simple and Portable', 
           media: [
-            'https://img.kwcdn.com/product/fancy/ac8281a0-c0fa-4c27-b40e-6389a2bc42f6.jpg?imageView2/2/w/800/q/70/format/avif',
-            'https://img.kwcdn.com/product/fancy/8ab9b37f-9cf9-4e6c-a052-2ebfc46d6a25.jpg?imageView2/2/w/800/q/70/format/avif',
-            'https://img.kwcdn.com/product/fancy/1a1874fb-2e53-4a6d-bc21-85e723816cc7.jpg?imageView2/2/w/800/q/70/format/avif'
+            'https://img.kwcdn.com/product/fancy/f61ade32-0449-4d20-ada5-9adc4a473a22.jpg?imageView2/2/w/800/q/70/format/avif',
+            'https://img.kwcdn.com/product/fancy/067bac2d-c47a-469f-baba-cc06adc8290f.jpg?imageView2/2/w/800/q/70/format/avif',
+            'https://img.kwcdn.com/product/fancy/9a5fe324-4e41-45c7-81f0-01b26326742b.jpg?imageView2/2/w/800/q/70/format/avif',
+            'https://img.kwcdn.com/product/fancy/394aab3c-eb43-493e-ace8-10f9dc393d7d.jpg?imageView2/2/w/800/q/70/format/avif',
+            'https://img.kwcdn.com/product/fancy/490eba1a-a34e-4c0d-9bc1-03e3db1a7c0a.jpg?imageView2/2/w/800/q/70/format/avif'
           ], 
-          price: 9.50, 
-          oldPrice: 22.00, 
+          price: 4.36, 
+          oldPrice: 9.99, 
           category: 'Toys & Games', 
           rating: 4.8, 
-          link: 'https://share.temu.com/BjTP5pHXTgC'  // 👈 رابط المنتج الأول
+          link: 'https://temu.to/k/pbbwcfu0fea'  
         },
 
 
@@ -375,6 +407,30 @@
     renderChips();
     render();
   }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   function renderChips(){
     const cats = ['All', ...new Set(products.map(p=>p.category).filter(Boolean))];
